@@ -9,6 +9,7 @@ link:
 	ln -sf ${PWD}/ack/ackrc ~/.ackrc
 	ln -sf ${PWD}/zsh/zshrc ~/.zshrc
 	ln -sf ${PWD}/ag/agignore ~/.agignore
+	ln -sf ${PWD}/alacritty ~/.config/alacritty
 
 # Backup private config files (ssh keys etc).
 private-files-backup:
