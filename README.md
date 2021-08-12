@@ -26,22 +26,22 @@ Some key features are:
 
 <!-- vim-markdown-toc GFM -->
 
-* [Introduction](#introduction)
-* [Quick Start](#quick-start)
-* [MacOS - Manual Steps](#macos---manual-steps)
-* [Features](#features)
-* [Private Files](#private-files)
-* [Developer Guide](#developer-guide)
-* [Ubuntu Terminal Configuration](#ubuntu-terminal-configuration)
-* [Shell Prompt Theme](#shell-prompt-theme)
-* [Shell Scripts and Aliases](#shell-scripts-and-aliases)
-* [Shell Commands](#shell-commands)
-* [Cheat Sheet - TMux](#cheat-sheet---tmux)
-* [Cheat Sheet - Vim](#cheat-sheet---vim)
-* [Cheat Sheet - Shell](#cheat-sheet---shell)
-* [Tooling Choices](#tooling-choices)
-    * [Vim](#vim)
-* [TODO](#todo)
+- [Introduction](#introduction)
+- [Quick Start](#quick-start)
+- [MacOS - Manual Steps](#macos---manual-steps)
+- [Features](#features)
+- [Private Files](#private-files)
+- [Developer Guide](#developer-guide)
+- [Ubuntu Terminal Configuration](#ubuntu-terminal-configuration)
+- [Shell Prompt Theme](#shell-prompt-theme)
+- [Shell Scripts and Aliases](#shell-scripts-and-aliases)
+- [Shell Commands](#shell-commands)
+- [Cheat Sheet - TMux](#cheat-sheet---tmux)
+- [Cheat Sheet - Vim](#cheat-sheet---vim)
+- [Cheat Sheet - Shell](#cheat-sheet---shell)
+- [Tooling Choices](#tooling-choices)
+  - [Vim](#vim)
+- [TODO](#todo)
 
 <!-- vim-markdown-toc -->
 
@@ -66,14 +66,14 @@ Run the commands below to upgrade the XCode tools, which provides Git. We then c
 xcode-select --install
 
 # Create a working environment, in my standard format.
-cd ~
-mkdir -p repos/github/dwmkerr
-cd repos/github/dwmkerr
+
+mkdir ~/src
+cd ~/src/
 
 # Clone the dotfiles - note that a new machine will not have my SSH key
 # so this is over https.
-git clone https://github.com/dwmkerr/dotfiles.git
-cd dotfiles
+git clone https://github.com/clegault/dotfiles-1.git
+cd dotfiles-1
 ```
 
 Now that you are in the dotfiles folder, you can interactively install features:
@@ -88,37 +88,18 @@ To restore private files, check the [Private Files](#private-files) section.
 
 The following steps have not yet been automated:
 
-1. Sign into Chrome and setup sync
-0. Sign into Dropbox and setup sync
-0. Setup 1Password and sync with Dropbox
-1. For `Terminal`, install the profiles under `./terminal` to give the One Dark / One Light themes
-0. For `iTerm2`, install the profile under `./terminal` to give the One Dark
-0. For `iTerm2` set the following options:
-     General: Selection - [X] Applications in terminal may access clipboard
-     General: Window    - [ ] Native full screen windows
-     Keys: HotKey       - [X] Show/hide all windows with a system-wide hotkey (⌥ +Space)
-
+1. Sign into Dropbox and setup sync
+2. Sign into LastPass and setup plugins
 
 ---
 
 These steps are work in progress.
 
 0. Restore GPG keys from a backup.
-0. Setup SSH keys for GitHub.
-0. Restore Parallels virtual machines from backup.
-0. Restore the `~/.private/` folder from a secure backup, to bring back project specific secrets.
-0. Restore the AWS CLI credentials to bring back project access.
-0. Setup SSH keys for GitHub.
-
-Some other tools I install which I have paid subscriptions for or are essentials:
-
-- Amplitube
-- Creative Cloud
-- Cyberduck
-- Dash
-- Epic Games Launcher
-- Guitar Pro
-
+1. Setup SSH keys for GitHub.
+2. Restore the `~/.private/` folder from a secure backup, to bring back project specific secrets.
+3. Restore the AWS CLI credentials to bring back project access.
+4. Setup SSH keys for GitHub.
 
 ## Features
 
@@ -173,7 +154,7 @@ This installs `tmux` and the Tmux Plugin Manager.
 
 **Shell**
 
-This installs `bash`, `zsh` and sets `zsh` as the default shell for the user. Sets the command prompt and sources the `.shell.sh` file.
+This installs `zsh` and sets `zsh` as the default shell for the user. Sets the command prompt and sources the `.shell.sh` file.
 
 Installs On My Zsh, which I use for themes and some conveniences, and copies over the zsh themes.
 
@@ -181,7 +162,7 @@ To enable features to be used in shells, the shell configuration file will sourc
 
 **OSX Applications**
 
-Many applications I used, such as WhatsApp, Visual Studio Code, T-Mux.
+Many applications I used, such as WhatsApp, Visual Studio Code, T-Mux, Nerd Fonts for use in the terminal etc.
 
 This also installs common CLI applications, such as `tree`, as well as GNU tools (`coretools`, `gsed` etc).
 
@@ -210,14 +191,6 @@ make private-files-restore
 
 You will be asked before backing up or restoring any file as an additional safety check, as these files are by their nature highly sensitive.
 
-## Developer Guide
-
-There's not much to say really, just follow the principles below:
-
-- Try to keep features _orthogonal_, so that they don't rely on each other
-- Try to remember to support `bash` as well as `zsh`
-- Try to remember to support Linux as well as MacOSX
-
 ## Ubuntu Terminal Configuration
 
 Set the [OneDark Theme](https://github.com/denysdovhan/one-gnome-terminal) with:
@@ -225,16 +198,6 @@ Set the [OneDark Theme](https://github.com/denysdovhan/one-gnome-terminal) with:
 ```sh
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/denysdovhan/gnome-terminal-one/master/one-dark.sh)"
 ```
-
-## Shell Prompt Theme
-
-The [`set_ps1.sh`](./shell.d/set_ps1.sh) can be used to set `PS1` styles:
-
-```
-$ set_ps1 debian
-```
-
-The `PS1` is converted to Z-Shell format if the current shell is `zsh`. My current 'default' theme is named `dwmkerr`.
 
 ## Shell Scripts and Aliases
 
@@ -244,23 +207,23 @@ The following features are loaded as part of my configuration. Check the link to
 
 The following shell commands are setup:
 
-| Command                         | Usage                                                                      |
-|---------------------------------|----------------------------------------------------------------------------|
-| **Quick Aliases** | [`shell.d/aliases.sh`](./shell.d/aliases.sh) |
-| [`serve`](./shell.d/aliases.sh) | Serve the current folder over HTTP on port 3000.                           |
-| [`vinilla`](./shell.d/aliases.sh) | Open `vi` without loading the `vimrc` (i.e. vanilla configuration). |
-| **Basic Functions** | |
-| [`eachdir`](./shell.d/functions.sh) | Run a command in each child directory. |
-| [`D`](./shell.d/functions.sh) | Get the date in ISO86091 format (e.g. `2021-04-24`). |
-| [`mkd`](./shell.d/functions.sh) | Make a directory, using `-p` and `cd` into it. |
-| [`revcut`](./shell.d/functions.sh) | Cut, but in reverse (i.e. from the last to the first delimiter). |
-| **Git Functions** | |
-| [`ghclone`](./shell.d/git.sh) | Clone from GitHub, e.g: `ghclone dwmkerr/effective-shell`.                 |
+| Command                             | Usage                                                               |
+| ----------------------------------- | ------------------------------------------------------------------- |
+| **Quick Aliases**                   | [`shell.d/aliases.sh`](./shell.d/aliases.sh)                        |
+| [`serve`](./shell.d/aliases.sh)     | Serve the current folder over HTTP on port 3000.                    |
+| [`vinilla`](./shell.d/aliases.sh)   | Open `vi` without loading the `vimrc` (i.e. vanilla configuration). |
+| **Basic Functions**                 |                                                                     |
+| [`eachdir`](./shell.d/functions.sh) | Run a command in each child directory.                              |
+| [`D`](./shell.d/functions.sh)       | Get the date in ISO86091 format (e.g. `2021-04-24`).                |
+| [`mkd`](./shell.d/functions.sh)     | Make a directory, using `-p` and `cd` into it.                      |
+| [`revcut`](./shell.d/functions.sh)  | Cut, but in reverse (i.e. from the last to the first delimiter).    |
+| **Git Functions**                   |                                                                     |
+| [`ghclone`](./shell.d/git.sh)       | Clone from GitHub, e.g: `ghclone dwmkerr/effective-shell`.          |
 
 ## Cheat Sheet - TMux
 
 | Command                 | Usage                                                 |
-|-------------------------|-------------------------------------------------------|
+| ----------------------- | ----------------------------------------------------- |
 | `man tmux`              | Get help on commands.                                 |
 | `<leader> ?`            | Get help on commands.                                 |
 | `Ctrl + h/j/k/l`        | Navigate splits (vim aware)                           |
@@ -281,7 +244,7 @@ The following shell commands are setup:
 Here's a quick reference. My `<Leader>` is `\`, so I've written shortcuts as `\x` rather than `<Leader>x` for brevity. I still need to port the above to the structure below.
 
 | Command                              | Usage                                                                   |
-|--------------------------------------|-------------------------------------------------------------------------|
+| ------------------------------------ | ----------------------------------------------------------------------- |
 | **Custom Commands**                  |                                                                         |
 | `<leader>r`                          | Open current file in NERDTree.                                          |
 | `<leader>w`                          | Write buffer.                                                           |
@@ -323,14 +286,12 @@ Other useful stuff:
 These are just some common commands I often forget:
 
 | Command      | Usage                                                                                     |
-|--------------|-------------------------------------------------------------------------------------------|
+| ------------ | ----------------------------------------------------------------------------------------- |
 | `tput cvvis` | Show the cursor. Useful if it disappears when a command hides it and fails to restore it. |
-
-## Tooling Choices
 
 ### Vim
 
-*Why Vim Plug over Vundle?*
+_Why Vim Plug over Vundle?_
 
 I was impressed enough with the comments on [this post](https://erikzaadi.com/2016/02/11/moving-from-vundle-to-vim-plug/) to make the switch, particularly as [coc](https://github.com/neoclide/coc.nvim) doesn't support Vundle, meaning I had to give Plug a try.
 
@@ -339,8 +300,5 @@ I was impressed enough with the comments on [this post](https://erikzaadi.com/20
 - [ ] Autocomplete for docker/k8s is still not properly setup.
 - [ ] osx - mas (mac app store CLI: brew)
 - [ ] osx - set icon
-- [ ] iterm - set colour scheme
-- [ ] terminal - raise bug on broken colours
 - [ ] node is not sourcing properly
-- [ ] fix: long urls in tmux work if they span lines - *unless* they are in `vim`
-- [ ] vi: decide on vi/nvim
+- [ ] fix: long urls in tmux work if they span lines - _unless_ they are in `vim`
