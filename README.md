@@ -16,14 +16,6 @@ Some key features are:
 
 ⚠️ **Warning**: I have tried wherever possible to ensure no _destructive_ change will happen when working with the scripts or commands in this project, without explicit user intervention (i.e. the user typing `yes` to make changes). The goal is that you can run the setup scripts without changing _anything_ unless you explicitly choose a feature. However, I cannot guarantee I haven't made an mistakes, so please exercise caution.
 
-**Screenshot on MacOSX**
-
-![Screenshot: MacOSX](./docs/screenshot_macosx.png)
-
-**Screenshot on Ubuntu**
-
-![Screenshot: Ubuntu](./docs/screenshot_ubuntu.png)
-
 <!-- vim-markdown-toc GFM -->
 
 - [Introduction](#introduction)
