@@ -5,7 +5,7 @@ if [[ "$os" == "osx" ]]; then
 
     echo "$os: Installing gpg..."
     # Install GPG and Pinentry for Mac.
-    brew install gnupg pinentry-mac
+    brew install gnupg
 
     # Tell GPG to use pinentry-mac, and restart the agent. Create the gnupg
     # folder if we have to.

@@ -123,9 +123,6 @@ case "$OSTYPE" in
   linux*)
     POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time  status rvm time)
   ;;
-  dragonfly*|freebsd*|netbsd*|openbsd*)
-    # ...
-  ;;
 esac
 
 #

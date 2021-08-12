@@ -7,8 +7,9 @@ if [[ "$os" == "osx" ]]; then
 elif [[ "$os" == "ubuntu" ]]; then
     sudo apt-get update -y
     sudo apt-get install -y zsh
+fi
 
-    # Our zshrc assumes oh-my-zsh, ask to install it first.
+# Our zshrc assumes oh-my-zsh, ask to install it first.
 echo "Installing current oh-my-zsh"
 # Run the unattended install, see:
 # https://github.com/ohmyzsh/ohmyzsh#unattended-install

@@ -4,7 +4,7 @@ if [[ "$os" == "osx" ]]; then
     brew install the_silver_searcher
 elif [[ "$os" == "ubuntu" ]]; then
     echo "$os: installing silversearcher..."
-    apt-get install -y silversearcher-ag
+    apt install -y silversearcher-ag
 fi
 
 # We refer to this global ag ignore file in the shell.d/aliases.sh file,
@@ -12,16 +12,15 @@ fi
 ensure_symlink "$(pwd)/ag/ignore" "$HOME/.ignore"
 
 # Fuzzy finder.
+echo "Installing fzf"
 if [[ "$os" == "osx" ]]; then
-    echo "$os: Installing fzf with brew..."
     # Install fzf, then setup the auto-completion.
     brew install fzf
     $(brew --prefix)/opt/fzf/install
 elif [[ "$os" == "ubuntu" ]]; then
-    echo "Not yet implemented."
+    apt install fzf -y
     exit 1
 fi
-
 
 # Setup Kubectl
 # if ask "$os: Install kubectl?" Y; then
@@ -36,20 +35,18 @@ fi
 
 # Setup grc
 echo "Installing grc"
-    if [[ "$os" == "osx" ]]; then
-        brew install grc
-    elif [[ "$os" == "ubuntu" ]]; then
-        apt install -y grc
-    fi
+if [[ "$os" == "osx" ]]; then
+    brew install grc
+elif [[ "$os" == "ubuntu" ]]; then
+    apt install -y grc
 fi
 
 # Setup tldr.
 echo "Installing tldr"
-    if [[ "$os" == "osx" ]]; then
-        brew install tldr
-    elif [[ "$os" == "ubuntu" ]]; then
-        apt install -y tldr
-    fi
+if [[ "$os" == "osx" ]]; then
+    brew install tldr
+elif [[ "$os" == "ubuntu" ]]; then
+    apt install -y tldr
 fi
 
 #setup colorls

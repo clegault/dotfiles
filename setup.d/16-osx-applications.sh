@@ -42,7 +42,7 @@ brew tap homebrew/cask
 brew tap homebrew/cask-fonts
 for app in "${apps[@]}"; do
     if ask "$os: Install Application '${app}'?" N; then
-        brew install --cask ${app}
+        brew install ${app}
     fi
 done
 
@@ -61,7 +61,6 @@ apps=('coreutils'
     'wget'
 )
 for app in ${apps[@]}; do
-    if ask "$os: Install tool '${app}'?" N; then
-        brew install ${app}
-    fi
+    $os: Install tool '${app}'"
+    brew install ${app}
 done
