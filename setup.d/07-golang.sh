@@ -1,21 +1,19 @@
 # Setup parameters.
-golangver="1.11"
 gopath="$HOME/go"
 
 if [[ "$os" == "osx" ]]; then
-    echo "$os: Installing Go $golangver with brew..."
-    brew install go@${golangver}
+    echo "$os: Installing Go with brew..."
+    brew install go
 elif [[ "$os" == "ubuntu" ]]; then
-    echo "$os: Installing Go $golangver with snap..."
-    sudo snap install --classic --channel="${golangver}/stable" go
+    echo "$os: Installing Go with snap..."
+    sudo snap install --classic go
 fi
 
 # Now make sure we have a go home for $GOPATH...
 if [ ! -d "$gopath" ]; then
-    if ask "$os: Create \$GOPATH at '$gopath'?" Y; then
-        mkdir "${gopath}";
-        mkdir "${gopath}/src";
-        mkdir "${gopath}/pkg";
-        mkdir "${gopath}/bin";
-    fi
+    echo "no gopath detected, creating \$GOPATH at '$gopath'"
+    mkdir "${gopath}";
+    mkdir "${gopath}/src";
+    mkdir "${gopath}/pkg";
+    mkdir "${gopath}/bin";
 fi 

@@ -4,42 +4,27 @@ if [[ "$os" != "osx" ]]; then
     return 0
 fi
 
-if ask "$os: Standardise Dock Configuration?" N; then
-    # Set my preferred dock size and enable magnification.
-    defaults write com.apple.dock tilesize -int 32
-    defaults write com.apple.dock largesize -float 64
-    defaults write com.apple.dock magnification -bool true
+echo "Standardise Dock Configuration?"
+# Set my preferred dock size and enable magnification.
+defaults write com.apple.dock tilesize -int 32
+defaults write com.apple.dock largesize -float 64
+defaults write com.apple.dock magnification -bool true
 
-    # Only show apps which are open, rather than shortcuts.
-    defaults write com.apple.dock static-only -bool true
+# Only show apps which are open, rather than shortcuts.
+defaults write com.apple.dock static-only -bool true
 
-    # Restart the dock.
-    killall Dock
-fi    
+# Restart the dock.
+killall Dock
 
-if ask "$os: Enable 'tap-to-click'?" N; then
-    # https://www.compsmag.com/how-to/turning-on-mac-touch-to-click-support-from-command-line/
-    defaults write com.apple.AppleMultitouchTrackpad Click -bool true
-    sudo defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Click -bool true
-    sudo defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-    sudo defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-fi    
 
-if ask "$os: Set wallpaper?" N; then
-    osascript -e "tell application \"Finder\" to set desktop picture to POSIX file \"$(pwd)/desktop/vim-shortcuts2560x1600.png\""
-fi
+echo  "Showing hidden files and folders" 
+defaults write com.apple.finder AppleShowAllFiles -bool true; killall Finder
 
-if ask "$os: Show hidden files and folders?" N; then
-    defaults write com.apple.finder AppleShowAllFiles -bool true; killall Finder
-fi
+echo "Showing the path bar in Finder"
+defaults write com.apple.finder ShowPathbar -bool true; killall Finder
 
-if ask "$os: Show the path bar in Finder?" N; then
-    defaults write com.apple.finder ShowPathbar -bool true; killall Finder
-fi
-
-if ask "$os: Setup 'reattach-to-user-namespace' to allow proper clipboard support in the shell?" N; then
-    brew install reattach-to-user-namespace
-fi
+echo "Setting up 'reattach-to-user-namespace' to allow proper clipboard support in the shell"
+brew install reattach-to-user-namespace
 
 # Get the current computer name and ask if the user wants to change it.
 computer_name=$(scutil --get ComputerName)

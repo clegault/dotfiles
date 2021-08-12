@@ -1,16 +1,15 @@
 # Setup ag.
-if ask "$os: Install/Configure The Silver Searcher?" Y; then
-    if [[ "$os" == "osx" ]]; then
-        brew install the_silver_searcher
-    elif [[ "$os" == "ubuntu" ]]; then
-        echo "$os: Updating tmux..."
-        apt-get install -y silversearcher-ag
-    fi
-
-    # We refer to this global ag ignore file in the shell.d/aliases.sh file,
-    # because `ag` is an alias for using `ag` with this file.
-    ensure_symlink "$(pwd)/ag/ignore" "$HOME/.ignore"
+echo "Installing The Silver Searcher"
+if [[ "$os" == "osx" ]]; then
+    brew install the_silver_searcher
+elif [[ "$os" == "ubuntu" ]]; then
+    echo "$os: installing silversearcher..."
+    apt-get install -y silversearcher-ag
 fi
+
+# We refer to this global ag ignore file in the shell.d/aliases.sh file,
+# because `ag` is an alias for using `ag` with this file.
+ensure_symlink "$(pwd)/ag/ignore" "$HOME/.ignore"
 
 # Fuzzy finder.
 if [[ "$os" == "osx" ]]; then
@@ -23,39 +22,42 @@ elif [[ "$os" == "ubuntu" ]]; then
     exit 1
 fi
 
-# Setup wiktionary cli.
-if ask "$os: Install wped/wikt?" Y; then
-    if [[ "$os" == "osx" ]]; then
-        brew install php-cli php-curl php-xml elinks
-        wget https://raw.githubusercontent.com/mevdschee/wped/master/wped.php -O wped
-        chmod 755 wped
-        sudo mv wped /usr/local/bin/wped
-        sudo ln -s /usr/local/bin/wped /usr/local/bin/wikt
-    elif [[ "$os" == "ubuntu" ]]; then
-        sudo apt-get install php-cli php-curl php-xml elinks
-        wget https://raw.githubusercontent.com/mevdschee/wped/master/wped.php -O wped
-        chmod 755 wped
-        sudo mv wped /usr/bin/wped
-        sudo ln -s /usr/bin/wped /usr/bin/wikt
-    fi
-fi
 
 # Setup Kubectl
-if ask "$os: Install kubectl?" Y; then
+# if ask "$os: Install kubectl?" Y; then
+#     if [[ "$os" == "osx" ]]; then
+#         brew install kubernetes-cli
+#     elif [[ "$os" == "ubuntu" ]]; then
+#         curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+#         chmod +x ./kubectl
+#         sudo mv ./kubectl /usr/local/bin/kubectl
+#     fi
+# fi
+
+# Setup grc
+echo "Installing grc"
     if [[ "$os" == "osx" ]]; then
-        brew install kubernetes-cli
+        brew install grc
     elif [[ "$os" == "ubuntu" ]]; then
-        curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
-        chmod +x ./kubectl
-        sudo mv ./kubectl /usr/local/bin/kubectl
+        apt install -y grc
     fi
 fi
 
 # Setup tldr.
-if ask "$os: Install tldr?" Y; then
+echo "Installing tldr"
     if [[ "$os" == "osx" ]]; then
         brew install tldr
     elif [[ "$os" == "ubuntu" ]]; then
         apt install -y tldr
     fi
 fi
+
+#setup colorls
+# echo "Installing colorls"
+#     if [[ "$os" == "osx" ]]; then
+#         gem install colorls
+#     elif [[ "$os" == "ubuntu" ]]; then
+#         apt install build-essential ruby ruby-dev
+#         gem install colorls
+#     fi
+# fi

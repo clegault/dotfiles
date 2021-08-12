@@ -22,5 +22,5 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 ensure_symlink "$(pwd)/vim/vim-spell-en.utf-8.add" "$HOME/.vim-spell-en.utf-8.add"
 ensure_symlink "$(pwd)/vim/vimrc" "$HOME/.vimrc"
 
-# Install plugins.
+# Install plugins. THIS IS BROKEN
 vim +'PlugInstall --sync' +qa

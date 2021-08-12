@@ -49,14 +49,14 @@ safe_set cdable_vars    # Allow 'cd varname' to switch directory.
 # not just relative to the current location. For example, if the below was
 # uncommented we could 'cd my_project' from anywhere if 'my_project' is in
 # the 'repos' folder.
-# CDPATH="~:~/repos"
+CDPATH="~:~/src"
 
 # Configure the history to make it large and support multi-line commands.
 safe_set histappend                  # Don't overwrite the history file, append.
 safe_set cmdhist                     # Multi-line commands are one entry only.
 PROMPT_COMMAND='history -a'          # Before we prompt, save the history.
-HISTSIZE=10000                       # A large number of commands per session.
-HISTFILESIZE=100000                  # A huge number of commands in the file.
+#HISTSIZE=10000                       # A large number of commands per session.
+#HISTFILESIZE=100000                  # A huge number of commands in the file.
 # HISTCONTROL="ignorespace:ignoredup" # Ignore starting with space or duplicates?
 # export HISTIGNORE="ls:history"     # Any commands we want to not record?
 # HISTTIMEFORMAT='%F %T '            # Do we want a timestamp for commands?
@@ -91,9 +91,6 @@ if [ -n "$BASH_VERSION" ]; then
     if [ -f /etc/bash_completion ]; then . /etc/bash_completion; fi
 elif [ -n "$ZSH_VERSION" ]; then
     # Source zsh auto-completions.
-    fpath=($HOME/.zsh/completion $fpath)
-    autoload -Uz compinit && compinit -i
+    # fpath=($HOME/.zsh/completion $fpath)
+    # autoload -Uz compinit && compinit -i
 fi
-
-# Set my preferred prompt.
-set_ps1 "dwmkerr" || true
