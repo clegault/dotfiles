@@ -27,17 +27,18 @@ ln -s ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting-filetypes/zsh-syntax-h
 
 # After we have installed zsh, create a link to our zshrc.
 echo "$os: setting ~/.zshrc link..."
-ensure_symlink "${PWD}/zsh/zshrc" "$HOME/.zshrc"
+rm ~/.zshrc
+ensure_symlink "${PWD}/zsh/zshrc" "~/.zshrc"
 
 # Move to zsh.
 echo "$os: checking shell..."
 if [[ ! "$SHELL" =~ zsh$ ]]; then
     echo "Changing shell to zsh?"
-    chsh -s "$(which zsh)"
+    sudo chsh -s "$(which zsh)" $USER
 fi
 
 # Check the shell, and make sure that we are sourcing the .shell.sh file.
-echo "Adding .shell.sh to zsh?" Y
+echo "Adding .shell.sh to zsh"
 
 # Create the .shell.sh script symlink as well as shell.d folder symlink.
 ensure_symlink "$(pwd)/shell.sh" "$HOME/.shell.sh"
