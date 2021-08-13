@@ -23,7 +23,7 @@ if ask "$os: Do you  want to ONLY install the zsh shell and CLI utils?" N; then
     )
     for app in "${apps[@]}"; do
         echo "$os: Running script:  '${app}"
-        source ${app}
+        source ./setup.d/${app}
     done
 else
     # Run each of the setup files.
