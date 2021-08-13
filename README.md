@@ -64,8 +64,8 @@ cd ~/src/
 
 # Clone the dotfiles - note that a new machine will not have my SSH key
 # so this is over https.
-git clone https://github.com/clegault/dotfiles-1.git
-cd dotfiles-1
+git clone https://github.com/clegault/dotfiles.git
+cd dotfiles
 ```
 
 Now that you are in the dotfiles folder, you can interactively install features:
