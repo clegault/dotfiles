@@ -34,8 +34,9 @@ elif
 
         # Ask the user if they want to setup the feature, then setup or skip.
         feature=$(basename "$file")
-        if ! ask "$os: setup feature '$feature'?" "N"; then continue; fi
-        source $file
+        if ! ask "$os: setup feature '$feature'?" "N"; then
+            source $file
+        fi
     done
 fi
 
