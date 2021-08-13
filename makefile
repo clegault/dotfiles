@@ -7,7 +7,7 @@ link:
 	ln -sf ${PWD}/vim/coc-settings.json ~/.vim/coc-settings.json
 	ln -sf ${PWD}/tmux/tmux.conf ~/.tmux.conf
 	ln -sf ${PWD}/zsh/zshrc ~/.zshrc
-	ln -sf ${PWD}/ag/agignore ~/.agignore
+	ln -sf ${PWD}/ag/agignore ~/.ignore
 	ln -sf ${PWD}/alacritty ~/.config/alacritty
 
 # Backup private config files (ssh keys etc).

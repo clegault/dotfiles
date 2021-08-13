@@ -16,6 +16,7 @@ if [[ "$os" == "osx" ]]; then
 elif [[ "$os" == "ubuntu" ]]; then
     echo "$os: Updating apt..."
     sudo apt-get update -y
+    sudo apt-get upgrade -y
 
     # Ensure that snap is installed for Ubuntu.
     if [ ! -x "$(command -v snap)" ]; then
