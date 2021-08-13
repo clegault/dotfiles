@@ -23,9 +23,9 @@ if ask "$os: Do you  want to ONLY install the zsh shell and CLI utils?" N; then
     )
     for app in "${apps[@]}"; do
         echo "$os: Running script:  '${app}"
-         source ${app}
+        source ${app}
     done
-elif
+else
     # Run each of the setup files.
     for file in ./setup.d/*; do
         # If we don't have a file (this happens when we find no results), then just
@@ -34,9 +34,8 @@ elif
 
         # Ask the user if they want to setup the feature, then setup or skip.
         feature=$(basename "$file")
-        if ! ask "$os: setup feature '$feature'?" "N"; then
-            source $file
-        fi
+        if ! ask "$os: setup feature '$feature'?" "N"; then continue; fi
+        source $file
     done
 fi
 
