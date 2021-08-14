@@ -30,13 +30,15 @@ elif [[ "$os" == "ubuntu" ]]; then
 fi
 
 # Configure Git.
-if ask "$os: Configure git for clegault user and GPG signing?" n; then
-    git config --global user.name "Collin LeGault"
-    git config --global user.email "clegault@nextgengeek.com"
-    git config --global user.signingKey ""
-    git config --global commit.gpgSign false
-    git config --global tag.forceSignAnnotated false
-    git config --global gpg.program "gpg"
-    # Note: on ubuntu we might need:
-    # git config --global gpg.program "gpg2"
+if [["$USER" == "clegault"]]; then
+    # if ask "$os: Configure git for clegault user and GPG signing?" n; then
+        git config --global user.name "Collin LeGault"
+        git config --global user.email "clegault@nextgengeek.com"
+        git config --global user.signingKey ""
+        git config --global commit.gpgSign false
+        git config --global tag.forceSignAnnotated false
+        git config --global gpg.program "gpg"
+        # Note: on ubuntu we might need:
+        # git config --global gpg.program "gpg2"
+    # fi
 fi
