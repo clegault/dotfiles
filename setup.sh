@@ -40,7 +40,9 @@ else
 fi
 
 # Many changes (such as chsh) need a restart, offer it now,
-if ask "$os: Some changes may require a restart - restart now?" Y; then
+if [ $1 == "-shell-only" ] ; then
+    exit 0
+elif ask "$os: Some changes may require a restart - restart now?" Y; then
     if [[ "$os" == "osx" ]]; then
         echo "$os: Restarting..."
         sudo shutdown -r now
