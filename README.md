@@ -57,6 +57,8 @@ Run the commands below to upgrade the XCode tools, which provides Git. We then c
 # MacOSX only - install command-line tools (so that we have git).
 xcode-select --install
 
+# Ubuntu only - install command line make tools.
+apt install make -y
 # Create a working environment, in my standard format.
 
 mkdir ~/src
