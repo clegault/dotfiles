@@ -10,7 +10,7 @@ done
 os=$(get_os)
 echo "os identified as: $os"
 
-if [ $1 == "-shell-only" ] || [ ask "$os: Do you  want to ONLY install the zsh shell and CLI utils?" N ]; then
+if [[ $1 == "-shell-only" ]] || ask "$os: Do you  want to ONLY install the zsh shell and CLI utils?" N; then
     apps=('01-package-manager.sh'
         '03-git.sh'
         '04-node.sh'
