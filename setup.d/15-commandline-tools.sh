@@ -26,7 +26,8 @@ if [[ "$os" == "osx" ]]; then
         'wget'
         'spotify'
         'alacritty'
-#        'kubernetes-cli'
+        'mas'
+        'kubernetes-cli'
     )
     for app in ${apps[@]}; do
         echo "$os: Installing tool '${app}'"
