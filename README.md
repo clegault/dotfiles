@@ -53,6 +53,8 @@ The following is set up:
 
 Run the commands below to upgrade the XCode tools, which provides Git. We then clone the `dotfiles` repository. Once this is done we can run `make setup`.
 
+If you are on an M1 Mac, Rosetta will be installed automatically. You will run into errors for developer extensions if you haven't loosened security settings in the recovery screen before installing.
+
 ```sh
 # MacOSX only - install command-line tools (so that we have git).
 xcode-select --install
