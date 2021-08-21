@@ -80,8 +80,9 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 # We *are* interactive, so if we are not already in tmux, start it.
-[[ -z "$TMUX" ]] && exec tmux
-
+if tmux_loc="$(type -p "tmux")" || [[ -z $tmux_loc ]]; then
+    exec tmux
+fi
 # Load auto-completions depending on our shell.
 # if [ -n "$BASH_VERSION" ]; then
 #     # Source auto-completions from the Mac and Linux locations.
