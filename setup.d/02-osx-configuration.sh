@@ -22,6 +22,16 @@ defaults write com.apple.finder AppleShowAllFiles -bool true; killall Finder
 echo "Showing the path bar in Finder"
 defaults write com.apple.finder ShowPathbar -bool true; killall Finder
 
+echo "Showing all drives, connected servers and removable media on desktop in Finder"
+# Set the finder settings
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
+defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
+
+# Restart the Finder.
+killall -HUP Finder
+
 echo "Setting up 'reattach-to-user-namespace' to allow proper clipboard support in the shell"
 brew install reattach-to-user-namespace
 
