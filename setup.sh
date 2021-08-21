@@ -25,6 +25,14 @@ if [[ $1 == "-shell-only" ]] || ask "$os: Do you  want to ONLY install the zsh s
         echo "$os: Running script:  '${app}"
         source ./setup.d/${app}
     done
+elif [[ $1 == "-auto" ]]; then
+    # Run each of the setup files.
+    for file in ./setup.d/*; do
+        # If we don't have a file (this happens when we find no results), then just
+        # move onto the next file (or finish the loop).
+        [ -e "$file" ] || continue
+        source $file
+    done
 else
     # Run each of the setup files.
     for file in ./setup.d/*; do
@@ -40,7 +48,7 @@ else
 fi
 
 # Many changes (such as chsh) need a restart, offer it now,
-if [ $1 == "-shell-only" ] ; then
+if [[ $1 == "-shell-only" ]] ; then
     exit 0
 elif ask "$os: Some changes may require a restart - restart now?" Y; then
     if [[ "$os" == "osx" ]]; then
