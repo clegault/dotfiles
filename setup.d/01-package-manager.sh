@@ -1,3 +1,9 @@
+#install rosetta if this is an M1
+if [[ $(uname -p) == 'arm' ]]; then
+  echo "M1 Mac detected, installing rosetta"
+  sudo softwareupdate --install-rosetta --agree
+fi
+
 # Setup any package manager required.
 if [[ "$os" == "osx" ]]; then
     echo "$os: Checking for brew..."
