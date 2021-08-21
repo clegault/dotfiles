@@ -35,6 +35,23 @@ killall -HUP Finder
 echo "Setting up 'reattach-to-user-namespace' to allow proper clipboard support in the shell"
 brew install reattach-to-user-namespace
 
+#Turn on remote desktop features
+if ask "$os: Would you like to turn on Screen Sharing?" N; then
+    sudo defaults write /var/db/launchd.db/com.apple.launchd/overrides.plist com.apple.screensharing -dict Disabled -bool false
+    sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.screensharing.plist
+fi
+
+#Turn on remote login features
+if ask "$os: Would you like to turn on remote login (SSH)?" N; then
+    sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -activate -configure -access -on -users admin -privs -all -restart -agent -menu
+fi
+
+#Turn on fileshare features
+if ask "$os: Would you like to turn on File Sharing?" N; then
+    sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.smbd.plist
+    sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server.plist EnabledServices -array disk
+fi
+
 # Get the current computer name and ask if the user wants to change it.
 if ask "$os: Would you like to run through the computer name changes?" N; then
     computer_name=$(scutil --get ComputerName)
