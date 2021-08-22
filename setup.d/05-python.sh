@@ -9,5 +9,3 @@ elif [[ "$os" == "ubuntu" ]]; then
         libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
     git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 fi
-
-echo "Python ${version} is the default."

@@ -5,7 +5,6 @@ if [[ "$os" != "osx" ]]; then
 fi
 
 apps=('lastpass'
-    'dropbox'
     'discord'
     'spotmenu'
     'forklift'
