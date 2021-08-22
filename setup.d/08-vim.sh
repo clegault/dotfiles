@@ -1,6 +1,7 @@
 # I expect the following folder in my $HOME for temp stuff. Vim'll save the edit
 # history and backups there.
 mkdir ~/tmp
+mkdir ~/.vim
 
 if [[ "$os" == "osx" ]]; then
     echo "$os: Installing vim..."
@@ -17,3 +18,4 @@ fi
 # Use our dotfiles for vimrc and vim spell.
 ensure_symlink "$(pwd)/vim/vim-spell-en.utf-8.add" "$HOME/.vim-spell-en.utf-8.add"
 ensure_symlink "$(pwd)/vim/vimrc" "$HOME/.vimrc"
+ensure_symlink "$(pwd)/vim/coc-settings.json" "$HOME/.vim/coc-settings.json"

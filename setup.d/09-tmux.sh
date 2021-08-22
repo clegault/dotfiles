@@ -13,7 +13,11 @@ ensure_symlink "$(pwd)/tmux/tmux.conf" "$HOME/.tmux.conf"
 # Install the TMux Plugin Manager.
 echo "Installing tmux plugin manager."
 # Setup the tmux plugin manager if it is not already installed.
-rm -rf ~/.tmux/plugins/tpm  || true
+if [[ ! -e ~/.tmux ]]; then
+    mkdir ~/.tmux
+else
+    rm -rf ~/.tmux/plugins/tpm  || true
+fi
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # Install tmux plugins.

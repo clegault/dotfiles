@@ -33,7 +33,7 @@ apps=('lastpass'
 # - slack
 
 for app in "${apps[@]}"; do
-    if ask "$os: Install Application '${app}'?" N; then
+    if [[ $1 == "-auto" ]] || $ask "$os: Install Application '${app}'?" N; then
         brew install ${app}
     fi
 done

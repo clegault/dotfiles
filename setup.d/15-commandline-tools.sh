@@ -1,6 +1,10 @@
 # We refer to this global ag ignore file in the shell.d/aliases.sh file,
 # because `ag` is an alias for using `ag` with this file.
 ensure_symlink "$(pwd)/ag/agignore" "$HOME/.ignore"
+if [[ ! -e "$HOME/.config" ]]; then
+    mkdir ~/.config
+fi
+ensure_symlink "${pwd}/alacritty" "$HOME/.config/alacritty"
 
 # Install Linux apps on osx.
 if [[ "$os" == "osx" ]]; then
@@ -26,12 +30,15 @@ if [[ "$os" == "osx" ]]; then
         'wget'
         'spotify'
         'alacritty'
+        'iterm2'
         'mas'
         'kubernetes-cli'
     )
     for app in ${apps[@]}; do
-        echo "$os: Installing tool '${app}'"
-        brew install ${app}
+        if [[ ${app} == "alacrity"]] && [[ $type == "osx-arm" ]]; then continue 
+        else
+            echo "$os: Installing tool '${app}'"
+            brew install ${app}
     done
     $(brew --prefix)/opt/fzf/install
     sudo gem install colorls

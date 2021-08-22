@@ -8,9 +8,22 @@ done
 # Get the operating system, output it. The script will terminate if the OS
 # cannot be categorically identified.
 os=$(get_os)
-echo "os identified as: $os"
+type=$(get_type)
 
-if [[ $1 == "-shell-only" ]] || ask "$os: Do you  want to ONLY install the zsh shell and CLI utils?" N; then
+echo "os identified as: $os"
+if [[ $type == "osx-arm" ]]; then
+    echo "hw identified as ARM64"
+fi
+
+if [[ $1 == "-auto" ]]; then
+    # Run each of the setup files.
+    for file in ./setup.d/*; do
+        # If we don't have a file (this happens when we find no results), then just
+        # move onto the next file (or finish the loop).
+        [ -e "$file" ] || continue
+        source $file
+    done
+elif [[ $1 == "-shell-only" ]] || ask "$os: Do you  want to ONLY install the zsh shell and CLI utils?" N; then
     apps=('01-package-manager.sh'
         '03-git.sh'
         '04-node.sh'
@@ -24,14 +37,6 @@ if [[ $1 == "-shell-only" ]] || ask "$os: Do you  want to ONLY install the zsh s
     for app in "${apps[@]}"; do
         echo "$os: Running script:  '${app}"
         source ./setup.d/${app}
-    done
-elif [[ $1 == "-auto" ]]; then
-    # Run each of the setup files.
-    for file in ./setup.d/*; do
-        # If we don't have a file (this happens when we find no results), then just
-        # move onto the next file (or finish the loop).
-        [ -e "$file" ] || continue
-        source $file
     done
 else
     # Run each of the setup files.
@@ -48,7 +53,7 @@ else
 fi
 
 # Many changes (such as chsh) need a restart, offer it now,
-if [[ $1 == "-shell-only" ]] ; then
+if [[ $1 == "-shell-only" ]] || [[ $1 == "-auto" ]]; then
     exit 0
 elif ask "$os: Some changes may require a restart - restart now?" Y; then
     if [[ "$os" == "osx" ]]; then

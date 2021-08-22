@@ -74,8 +74,16 @@ cd dotfiles
 
 Now that you are in the dotfiles folder, you can interactively install features:
 
-```sh
-make setup
+```
+bash ./setup.sh
+```
+
+```
+bash ./setup -auto #full install without many questions
+```
+
+```
+bash ./setup -shell-only #install the shell utilities only
 ```
 
 To restore private files, check the [Private Files](#private-files) section.
@@ -84,8 +92,7 @@ To restore private files, check the [Private Files](#private-files) section.
 
 The following steps have not yet been automated:
 
-1. Sign into Dropbox and setup sync
-2. Sign into LastPass and setup plugins
+1. Sign into LastPass and setup plugins
 
 ---
 
@@ -106,8 +113,8 @@ Each of the 'features' listed below typically has a `./setup.d/x-<feature-name>.
 Private files, such as GPG and SSH keys can be backed up or restored with the commands below:
 
 ```
-make private-files-backup
-make private-files-restore
+bash private-files/private-files-backup.sh
+bash private-files/private-files-restore.sh
 ```
 
 **Package Manager**
@@ -179,10 +186,10 @@ DOTFILES_PRIVATE_S3_BUCKET="dwmkerr-dotfiles-private"
 aws configure --profile "${DOTFILES_PRIVATE_PROFILE}"
 
 # Backup private files with:
-make private-files-backup
+bash private-files/private-files-backup.sh
 
 # Restore private files with:
-make private-files-restore
+bash private-files/private-files-restore.sh
 ```
 
 You will be asked before backing up or restoring any file as an additional safety check, as these files are by their nature highly sensitive.
