@@ -35,7 +35,7 @@ if [[ "$os" == "osx" ]]; then
         'kubernetes-cli'
     )
     for app in ${apps[@]}; do
-        if [[ ${app} == "alacrity"]] && [[ $type == "osx-arm" ]]; then continue 
+        if [[ ${app} == "alacritty"]] && [[ $type == "osx-arm" ]]; then continue 
         else
             echo "$os: Installing tool '${app}'"
             brew install ${app}
