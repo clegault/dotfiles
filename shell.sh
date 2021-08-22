@@ -49,7 +49,7 @@ safe_set cdable_vars    # Allow 'cd varname' to switch directory.
 # not just relative to the current location. For example, if the below was
 # uncommented we could 'cd my_project' from anywhere if 'my_project' is in
 # the 'repos' folder.
-CDPATH="~:~/src"
+#CDPATH="~:~/src"
 
 # Configure the history to make it large and support multi-line commands.
 safe_set histappend                  # Don't overwrite the history file, append.
@@ -79,10 +79,6 @@ fi
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-# We *are* interactive, so if we are not already in tmux, start it.
-if tmux_loc="$(type -p "tmux")" || [[ -z $tmux_loc ]]; then
-    exec tmux
-fi
 # Load auto-completions depending on our shell.
 # if [ -n "$BASH_VERSION" ]; then
 #     # Source auto-completions from the Mac and Linux locations.

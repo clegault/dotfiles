@@ -3,7 +3,7 @@ echo "installing zsh"
 if [[ "$os" == "osx" ]]; then
     brew install zsh zsh-completions
     # Make sure the installed zsh path is allowed in the list of shells.
-    echo "$(which zsh)" >> sudo tee -a /etc/shells
+    echo "/opt/homebrew/bin/zsh" | sudo tee -a /etc/shells
 elif [[ "$os" == "ubuntu" ]]; then
     sudo apt-get update -y
     sudo apt-get install -y zsh
@@ -33,8 +33,8 @@ ln -sf ${PWD}/zsh/zshrc ~/.zshrc
 # Move to zsh.
 echo "$os: checking shell..."
 if [[ ! "$SHELL" =~ zsh$ ]]; then
-    echo "Changing shell to zsh?"
-    sudo chsh -s "$(which zsh)" $USER
+    echo "Changing shell to zsh"
+    sudo chsh -s "/opt/homebrew/bin/zsh" $USER
 fi
 
 # Check the shell, and make sure that we are sourcing the .shell.sh file.
