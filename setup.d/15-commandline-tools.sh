@@ -11,7 +11,7 @@ if [[ "$os" == "osx" ]]; then
     brew tap homebrew/cask
     brew tap homebrew/cask-fonts
     apps=('font-hack-nerd-font'
-        'font-mononoki-nerd-font '
+        'font-mononoki-nerd-font'
         'coreutils'
         'fzf'
         'grc'
