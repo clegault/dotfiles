@@ -39,6 +39,7 @@ if [[ "$os" == "osx" ]]; then
         else
             echo "$os: Installing tool '${app}'"
             brew install ${app}
+        fi
     done
     $(brew --prefix)/opt/fzf/install
     sudo gem install colorls
