@@ -4,7 +4,7 @@ if [[ "$os" != "osx" ]]; then
     return 0
 fi
 
-apps=('lastpass'
+apps=('1password'
     'discord'
     'spotmenu'
     'forklift'
@@ -27,6 +27,8 @@ apps=('lastpass'
     'yed'
     'keybase'
     'slack'
+    '1password-cli'
+    'mas'
 )
 # Note that I no longer install the following apps - they are installed by the
 # enterprise profile:

@@ -31,7 +31,6 @@ if [[ "$os" == "osx" ]]; then
         'spotify'
         'alacritty'
         'iterm2'
-        'mas'
         'kubernetes-cli'
     )
     for app in ${apps[@]}; do
