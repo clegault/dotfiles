@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/Library/Python/3.9/bin:$HOME/.local/bin:$HOME/bin:/usr/local/bin:/usr/local/opt/python/libexec/bin:/opt/homebrew/sbin:/opt/homebrew/bin:$PATH
+export PATH=$HOME/Library/Python/3.9/bin:$HOME/.local/bin:$HOME/bin:/usr/local/bin:/usr/local/opt/python/libexec/bin:/opt/homebrew/sbin:/opt/homebrew/bin:/usr/local/sbin/:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
@@ -205,4 +205,4 @@ fi
 [ -r ~/.shell.sh ] && source ~/.shell.sh
 
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /opt/homebrew/bin/terraform terraform
+complete -o nospace -C $(brew --prefix)/bin/terraform terraform
