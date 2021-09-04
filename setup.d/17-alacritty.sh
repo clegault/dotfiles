@@ -13,11 +13,13 @@ elif [[ $type == "osx-arm" ]]; then
     brew install rustup
     rustup-init -y
     source $HOME/.cargo/env
+    cd ~/src/
     git clone https://github.com/alacritty/alacritty.git
     cd alacritty
     make app
     cp -r target/release/osx/Alacritty.app /Applications/
     sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
+    cd ../dotfiles/
 else
     echo "Intel mac detected. Installing Alacritty"
     brew install alacritty

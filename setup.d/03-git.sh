@@ -33,7 +33,7 @@ fi
 if [[ "$USER" == "clegault" ]]; then
     # if ask "$os: Configure git for clegault user and GPG signing?" n; then
         git config --global user.name "Collin LeGault"
-        git config --global user.email "clegault@nextgengeek.com"
+        git config --global user.email "1413504+clegault@users.noreply.github.com"
         git config --global user.signingKey ""
         git config --global commit.gpgSign false
         git config --global tag.forceSignAnnotated false

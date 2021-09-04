@@ -1,8 +1,8 @@
-xcode-select --install
-mkdir ~/src
-cd ~/src/
-git clone https://github.com/clegault/dotfiles.git
-cd dotfiles
+#xcode-select --install
+#mkdir ~/src
+#cd ~/src/
+#git clone https://github.com/clegault/dotfiles.git
+#cd dotfiles
 
 # Load each of the tools.
 for file in ./tools/*; do
