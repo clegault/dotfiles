@@ -32,7 +32,7 @@ if [[ "$os" == "osx" ]]; then
         echo "$os: Installing tool '${app}'"
         brew install ${app}
     done
-    $(brew --prefix)/opt/fzf/install
+    $(brew --prefix)/opt/fzf/install -all
     sudo gem install colorls
 elif [[ "$os" == "ubuntu" ]]; then
     apps=('silversearcher-ag'
