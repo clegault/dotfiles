@@ -55,9 +55,6 @@ Run the commands below to upgrade the XCode tools, which provides Git. We then c
 
 If you are on an M1 Mac, Rosetta will be installed automatically. You will run into errors for developer extensions if you haven't loosened security settings in the recovery screen before installing.
 
-```sh -c "$(curl -fsSL https://raw.githubusercontent.com/clegault/dotfiles/master/setup.sh -auto)"```
-```sh -c "$(curl -fsSL https://raw.githubusercontent.com/clegault/dotfiles/master/setup.sh -shell-only)"```
-
 ```sh
 # MacOSX only - install command-line tools (so that we have git).
 xcode-select --install
@@ -65,28 +62,24 @@ xcode-select --install
 # Ubuntu only - install command line make tools.
 apt install make -y
 # Create a working environment, in my standard format.
-
-mkdir ~/src
-cd ~/src/
-
-# Clone the dotfiles - note that a new machine will not have my SSH key
-# so this is over https.
-git clone https://github.com/clegault/dotfiles.git
-cd dotfiles
 ```
 
-Now that you are in the dotfiles folder, you can interactively install features:
+# To auto install on a Mac:
 
-```
-bash ./setup.sh
-```
-
-```
-bash ./setup -auto #full install without many questions
+```sh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/clegault/dotfiles/master/setup.sh )" -auto
 ```
 
+# To install shell only utils:
+
+```sh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/clegault/dotfiles/master/setup.sh)" -shell-only
 ```
-bash ./setup -shell-only #install the shell utilities only
+
+# To install interactively:
+
+```sh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/clegault/dotfiles/master/setup.sh)"
 ```
 
 To restore private files, check the [Private Files](#private-files) section.
@@ -95,7 +88,7 @@ To restore private files, check the [Private Files](#private-files) section.
 
 The following steps have not yet been automated:
 
-1. Sign into LastPass and setup plugins
+1. Sign into 1password and setup plugins
 
 ---
 
