@@ -3,7 +3,7 @@ echo "installing zsh"
 if [[ "$os" == "osx" ]]; then
     brew install zsh zsh-completions
     # Make sure the installed zsh path is allowed in the list of shells.
-    echo "/opt/homebrew/bin/zsh" | sudo tee -a /etc/shells
+    echo "$(brew --prefix)/bin/zsh" | sudo tee -a /etc/shells
 elif [[ "$os" == "ubuntu" ]]; then
     sudo apt-get update -y
     sudo apt-get install -y zsh
