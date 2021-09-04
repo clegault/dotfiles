@@ -11,8 +11,13 @@ if [[ "$os" == "osx" ]]; then
     if [[ $? != 0 ]] ; then
         echo "$os: Installing HomeBrew..."
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
-        eval "$(/opt/homebrew/bin/brew shellenv)"
+        if [[ $type == 'osx-arm' ]]; then
+            echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+            eval "$(/opt/homebrew/bin/brew shellenv)"
+        else
+            echo 'eval "$(/usr/local/bin/brew shellenv)"' >> ~/.zprofile
+            eval "$(/usr/local/bin/brew shellenv)"
+        fi
         # If there was an error, it might be this issue:
         echo "If you see an error above, run:"
         echo "  brew doctor"
