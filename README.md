@@ -55,6 +55,9 @@ Run the commands below to upgrade the XCode tools, which provides Git. We then c
 
 If you are on an M1 Mac, Rosetta will be installed automatically. You will run into errors for developer extensions if you haven't loosened security settings in the recovery screen before installing.
 
+```sh -c "$(curl -fsSL https://raw.githubusercontent.com/clegault/dotfiles/master/setup.sh -auto)"```
+```sh -c "$(curl -fsSL https://raw.githubusercontent.com/clegault/dotfiles/master/setup.sh -shell-only)"```
+
 ```sh
 # MacOSX only - install command-line tools (so that we have git).
 xcode-select --install
