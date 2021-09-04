@@ -64,19 +64,19 @@ apt install make -y
 # Create a working environment, in my standard format.
 ```
 
-# To auto install on a Mac:
+## To auto install on a Mac
 
 ```sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/clegault/dotfiles/master/setup.sh )" -auto
 ```
 
-# To install shell only utils:
+## To install shell only utils
 
 ```sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/clegault/dotfiles/master/setup.sh)" -shell-only
 ```
 
-# To install interactively:
+## To install interactively
 
 ```sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/clegault/dotfiles/master/setup.sh)"
@@ -104,11 +104,11 @@ These steps are work in progress.
 
 Each of the 'features' listed below typically has a `./setup.d/x-<feature-name>.sh` script to _install or upgrade_ the feature. Some also have a `./.shell.d/x-<feature-name>.sh` file which is sourced by interactive shells if commands need to be run on shell startup (such as enabled `pyenv` and similar features. The numbers are used to ensure that if there _are_ dependencies on features, we try and install in the right order.
 
-**Private Files**
+## Private Files
 
 Private files, such as GPG and SSH keys can be backed up or restored with the commands below:
 
-```
+```sh
 bash private-files/private-files-backup.sh
 bash private-files/private-files-restore.sh
 ```
