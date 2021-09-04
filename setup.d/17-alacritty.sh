@@ -2,7 +2,7 @@
 if [[ ! -e "$HOME/.config" ]]; then
     mkdir ~/.config
 fi
-ensure_symlink "${pwd}/alacritty" "$HOME/.config/alacritty"
+ensure_symlink "$(pwd)/alacritty" "$HOME/.config/alacritty"
 
 # Bail if we are not on OSX.
 if [[ "$os" != "osx" ]]; then
