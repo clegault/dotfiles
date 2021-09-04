@@ -6,8 +6,8 @@ ensure_symlink() {
     echo "  linking '$symlink_path' to '$target_path'"
     if [[ ! -e "$symlink_path" ]]; then
         ln -sf "$target_path" "$symlink_path"
-    # elif [[ ! "$(readlink $symlink_path)" = "$target_path" ]]; then
-    #     rm -rf "$symlink_path"
-    #     ln -sf "$target_path"
+    elif [[ ! "$(readlink $symlink_path)" = "$target_path" ]]; then
+        rm -rf "$symlink_path"
+        ln -sf "$target_path"
     fi
 }
