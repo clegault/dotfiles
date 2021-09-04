@@ -1,4 +1,3 @@
-xcode-select --install
 mkdir ~/src
 cd ~/src/
 git clone https://github.com/clegault/dotfiles.git
