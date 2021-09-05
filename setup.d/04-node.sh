@@ -4,7 +4,7 @@ nvm_installed=$(command -v nvm)
 if [[ ${nvm_installed} != 0 ]]; then
     echo "$os: Installing NVM..."
     touch ~/.bash_profile
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | zsh
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
 else
     echo "$os: NVM is installed..."
 fi

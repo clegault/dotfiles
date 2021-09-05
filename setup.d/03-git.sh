@@ -23,10 +23,11 @@ if [[ "$os" == "osx" ]]; then
 
 elif [[ "$os" == "ubuntu" ]]; then
     echo "$os: Installing git..."
+    sudo apt-get update -y
     sudo apt install -y git
 
     echo "$os: Installing gpg..."
-    sudo apt install -y gnupg2
+    sudo apt install -y gnupg
 fi
 
 # Configure Git.

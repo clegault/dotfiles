@@ -39,9 +39,6 @@ elif [[ "$os" == "ubuntu" ]]; then
         'fzf'
         'grc'
         'tldr'
-        'build-essential'
-        'ruby'
-        'ruby-dev'
         'tree'
         'ansible'
     )

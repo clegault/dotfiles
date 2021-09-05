@@ -5,7 +5,6 @@ if [[ "$os" == "osx" ]]; then
     # Make sure the installed zsh path is allowed in the list of shells.
     echo "$(brew --prefix)/bin/zsh" | sudo tee -a /etc/shells
 elif [[ "$os" == "ubuntu" ]]; then
-    sudo apt-get update -y
     sudo apt-get install -y zsh
 fi
 
@@ -34,7 +33,11 @@ ln -sf ${PWD}/zsh/zshrc ~/.zshrc
 echo "$os: checking shell..."
 if [[ ! "$SHELL" =~ zsh$ ]]; then
     echo "Changing shell to zsh"
-    sudo chsh -s "/opt/homebrew/bin/zsh" $USER
+    if [[ $os == "ubuntu" ]]; then
+        sudo chsh -s `$(command echo which zsh)` $USER
+    else
+        sudo chsh -s "$(brew --prefix)/bin/zsh" $USER
+    fi
 fi
 
 # Check the shell, and make sure that we are sourcing the .shell.sh file.
