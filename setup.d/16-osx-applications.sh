@@ -9,7 +9,6 @@ apps=('1password'
     'spotmenu'
     'forklift'
     'vagrant'
-    'virtualbox'
     'visual-studio-code'
     'vlc'
     'whatsapp'
@@ -17,18 +16,23 @@ apps=('1password'
     'alfred'
     'tunnelblick'
     'snagit'
-    'multipass'
     'firefox'
+    'brave'
     'fork'
     'kaleidoscope'
     'postman'
     'microsoft-remote-desktop'
     'zoom'
     'yed'
-    'keybase'
     'slack'
     '1password-cli'
     'mas'
+)
+
+intelonlyapps=(
+    'multipass'
+    'keybase'
+    'virtualbox'
 )
 # Note that I no longer install the following apps - they are installed by the
 # enterprise profile:
@@ -39,3 +43,10 @@ for app in "${apps[@]}"; do
         brew install ${app}
     fi
 done
+if [[ $type != 'osx-arm' ]]; then
+    for app in "${intelonlyapps[@]}"; do
+        if [[ $1 == "-auto" ]] || $ask "$os: Install Application '${app}'?" N; then
+            brew install ${app}
+        fi
+    done
+fi
