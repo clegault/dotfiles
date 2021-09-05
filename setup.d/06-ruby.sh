@@ -4,7 +4,7 @@
 
 if [[ "$os" == "ubuntu" ]]; then
     echo "$os: Installing ruby..."
-    apt install -y ruby ruby-dev
+    sudo apt install -y ruby ruby-dev
 else
     command curl -sSL https://rvm.io/mpapis.asc | gpg --import -
     command curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
