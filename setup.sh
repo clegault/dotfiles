@@ -28,6 +28,7 @@ elif [[ $1 == "-shell-only" ]] || ask "$os: Do you  want to ONLY install the zsh
         '03-git.sh'
         '04-node.sh'
         '05-python.sh'
+        '06-ruby.sh'
         '08-vim.sh'
         '09-tmux.sh'
         '10-shell.sh'
