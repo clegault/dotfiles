@@ -22,4 +22,4 @@ mkdir ~/src
 cd ~/src/
 git clone https://github.com/clegault/dotfiles.git
 cd dotfiles
-exec bash ./setup.sh $0
+exec bash ./setup.sh $1
