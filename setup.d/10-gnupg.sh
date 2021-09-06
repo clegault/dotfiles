@@ -1,7 +1,5 @@
-# Configure Git.
+# Configure gpg.
 if [[ "$os" == "osx" ]]; then
-    echo "$os: Installing git..."
-    brew install git
 
     echo "$os: Installing gpg..."
     # Install GPG and Pinentry for Mac.
@@ -22,24 +20,6 @@ if [[ "$os" == "osx" ]]; then
     chmod 600 ~/.gnupg/*
 
 elif [[ "$os" == "ubuntu" ]]; then
-    echo "$os: Installing git..."
-    sudo apt-get update -y
-    sudo apt install -y git
-
     echo "$os: Installing gpg..."
     sudo apt install -y gnupg
-fi
-
-# Configure Git.
-if [[ "$USER" == "clegault" ]]; then
-    # if ask "$os: Configure git for clegault user and GPG signing?" n; then
-        git config --global user.name "Collin LeGault"
-        git config --global user.email "1413504+clegault@users.noreply.github.com"
-        git config --global user.signingKey ""
-        git config --global commit.gpgSign false
-        git config --global tag.forceSignAnnotated false
-        git config --global gpg.program "gpg"
-        # Note: on ubuntu we might need:
-        # git config --global gpg.program "gpg2"
-    # fi
 fi

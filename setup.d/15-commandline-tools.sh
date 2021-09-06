@@ -27,6 +27,7 @@ if [[ "$os" == "osx" ]]; then
         'spotify'
         'iterm2'
         'kubernetes-cli'
+        'git'
     )
     for app in ${apps[@]}; do
         echo "$os: Installing tool '${app}'"

@@ -7,17 +7,11 @@ fi
 # Setup any package manager required.
 if [[ "$os" == "osx" ]]; then
     echo "$os: Checking for brew..."
-    which -s brew
-    if [[ $? != 0 ]] ; then
+    if [[ ! -x $(command -v brew) ]] ; then
         echo "$os: Installing HomeBrew..."
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        if [[ $type == 'osx-arm' ]]; then
-            echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
-            eval "$(/opt/homebrew/bin/brew shellenv)"
-        else
-            echo 'eval "$(/usr/local/bin/brew shellenv)"' >> ~/.zprofile
-            eval "$(/usr/local/bin/brew shellenv)"
-        fi
+        echo 'eval "$('$(brew --prefix)'/bin/brew shellenv)"'  >> ~/.zprofile
+        eval "$("$(brew --prefix)"/bin/brew shellenv)"
         # If there was an error, it might be this issue:
         echo "If you see an error above, run:"
         echo "  brew doctor"
@@ -26,13 +20,13 @@ if [[ "$os" == "osx" ]]; then
     brew update
 elif [[ "$os" == "ubuntu" ]]; then
     echo "$os: Updating apt..."
-    sudo apt-get update -y
-    sudo apt-get upgrade -y
+    sudo apt update -y
+    sudo apt upgrade -y
 
     # Ensure that snap is installed for Ubuntu.
-    if [ ! -x "$(command -v snap)" ]; then
+    if [[ ! -x "$(command -v snap)" ]]; then
         echo "$os: Installing snap..."
-        sudo apt-get install -y snapd
+        sudo apt install -y snapd
     else
         echo "$os: 'snap' is installed..."
     fi
