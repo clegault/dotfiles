@@ -67,10 +67,23 @@ apt install make -y
 ## To install shell only utils on Mac or Ubuntu
 
 ```sh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/clegault/dotfiles/master/install.sh )"
+bash  -c "$(curl -fsSL https://raw.githubusercontent.com/clegault/dotfiles/master/install.sh) -shell-only"
+```
+
+## To install everything automatically on Mac or Ubuntu
+
+```sh
+bash  -c "$(curl -fsSL https://raw.githubusercontent.com/clegault/dotfiles/master/install.sh) -auto"
 ```
 
 ## Interactive install
+
+```sh
+bash  -c "$(curl -fsSL https://raw.githubusercontent.com/clegault/dotfiles/master/install.sh)"
+```
+
+## Manual interactive install
+
 ```sh
 mkdir ~/src
 cd ~/src

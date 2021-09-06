@@ -32,7 +32,7 @@ elif [[ $1 == "-shell-only" ]] || ask "$os: Do you  want to ONLY install the zsh
         '07-golang.sh'
         '08-vim.sh'
         '09-tmux.sh'
-        '10-gnupg.sh'
+        '10-gnupg-git.sh'
         '14-docker-autocompletion.sh'
         '15-commandline-tools.sh'
     )
