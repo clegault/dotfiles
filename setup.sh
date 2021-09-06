@@ -16,6 +16,7 @@ if [[ $type == "osx-arm" ]]; then
 fi
 
 if [[ $1 == "-auto" ]]; then
+    echo "Using auto install"
     # Run each of the setup files.
     for file in ./setup.d/*; do
         # If we don't have a file (this happens when we find no results), then just
@@ -24,6 +25,7 @@ if [[ $1 == "-auto" ]]; then
         source $file
     done
 elif [[ $1 == "-shell-only" ]] || ask "$os: Do you  want to ONLY install the zsh shell and CLI utils?" N; then
+    echo "Using Shell Only install"
     apps=('01-package-manager.sh'
         '03-shell.sh'
         '04-node.sh'
@@ -42,6 +44,7 @@ elif [[ $1 == "-shell-only" ]] || ask "$os: Do you  want to ONLY install the zsh
     done
 else
     # Run each of the setup files.
+    echo "Interactive mode"
     for file in ./setup.d/*; do
         # If we don't have a file (this happens when we find no results), then just
         # move onto the next file (or finish the loop).
