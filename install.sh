@@ -1,4 +1,4 @@
-if [[ -x "$(command -v xcode-select)" ]]; then
+if [ -x "$(command -v xcode-select)" ]; then
     xcode-select --install
     echo "Follow the prompts on the screen to finish xcode installation. Press any key to continue once the installer is finished."
     while [ true ] ; do
@@ -13,7 +13,7 @@ else
     sudo apt update
     sudo apt upgrade -y
 fi
-if [[ ! -x "$(command -v git)" ]]; then
+if [ ! -x "$(command -v git)" ]; then
     echo "Installing git"
     sudo apt install -y git
 fi
@@ -35,4 +35,4 @@ mkdir ~/src
 cd ~/src/
 git clone https://github.com/clegault/dotfiles.git
 cd dotfiles
-exec ./setup.sh -auto
+exec ./setup.sh -shell-only
