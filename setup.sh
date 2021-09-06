@@ -25,13 +25,14 @@ if [[ $1 == "-auto" ]]; then
     done
 elif [[ $1 == "-shell-only" ]] || ask "$os: Do you  want to ONLY install the zsh shell and CLI utils?" N; then
     apps=('01-package-manager.sh'
-        '03-git.sh'
+        '03-shell.sh'
         '04-node.sh'
         '05-python.sh'
         '06-ruby.sh'
+        '07-golang.sh'
         '08-vim.sh'
         '09-tmux.sh'
-        '10-shell.sh'
+        '10-gnupg.sh'
         '14-docker-autocompletion.sh'
         '15-commandline-tools.sh'
     )
