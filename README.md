@@ -64,22 +64,19 @@ apt install make -y
 # Create a working environment, in my standard format.
 ```
 
-## To auto install on a Mac
+## To install shell only utils on Mac or Ubuntu
 
 ```sh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/clegault/dotfiles/master/setup.sh )" -auto
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/clegault/dotfiles/master/install.sh )"
 ```
 
-## To install shell only utils
-
+## Interactive install
 ```sh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/clegault/dotfiles/master/setup.sh)" -shell-only
-```
-
-## To install interactively
-
-```sh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/clegault/dotfiles/master/setup.sh)"
+mkdir ~/src
+cd ~/src
+git clone https://github.com/clegault/dotfiles.git
+cd dotfiles
+./setup.sh
 ```
 
 To restore private files, check the [Private Files](#private-files) section.
