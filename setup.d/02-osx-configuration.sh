@@ -4,7 +4,7 @@ if [[ "$os" != "osx" ]]; then
     return 0
 fi
 
-echo "Standardise Dock Configuration?"
+echo "Standardise Dock Configuration"
 # Set my preferred dock size and enable magnification.
 defaults write com.apple.dock tilesize -int 32
 defaults write com.apple.dock largesize -float 64

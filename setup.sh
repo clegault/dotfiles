@@ -25,18 +25,12 @@ if [[ $1 == "-auto" ]]; then
         source $file
     done
 elif [[ $1 == "-shell-only" ]] || ask "$os: Do you  want to ONLY install the zsh shell and CLI utils?" N; then
-    echo "Using Shell Only install"
+    echo "Shell Only install"
     apps=('01-package-manager.sh'
         '03-shell.sh'
-        '04-node.sh'
-        '05-python.sh'
-        '06-ruby.sh'
-        '07-golang.sh'
         '08-vim.sh'
         '09-tmux.sh'
         '10-gnupg-git.sh'
-        '13-terraform.sh'
-        '14-docker-autocompletion.sh'
         '15-commandline-tools.sh'
     )
     for app in "${apps[@]}"; do
