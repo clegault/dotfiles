@@ -13,6 +13,7 @@ if [[ "$os" == "osx" ]]; then
         'grc'
         'tldr'
         'the_silver_searcher'
+        'fswatch'
         'findutils'
         'gawk'
         'gnu-indent'
