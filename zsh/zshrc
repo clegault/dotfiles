@@ -65,7 +65,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 #   zsh-syntax-highlighting
 # )
 
-plugins=(grc git git-extras gem bundler macos ruby rvm rails sudo sublime colorize history history-substring-search last-working-dir compleat zsh-completions zsh-history-substring-search zsh-autosuggestions zsh-syntax-highlighting zsh-syntax-highlighting-filetypes warhol tmux)
+plugins=(grc git  git-extras gem bundler macos ruby rvm rails sudo sublime colorize history history-substring-search last-working-dir compleat zsh-completions zsh-history-substring-search zsh-autosuggestions zsh-syntax-highlighting zsh-syntax-highlighting-filetypes warhol tmux)
 
 export DEFAULT_USER='clegault'
 TERM=xterm-256color
@@ -110,13 +110,29 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context os_icon ssh root_indicator dir dir_wr
 case "$OSTYPE" in
   darwin*)
     prompt_zsh_showStatus () {
-      state=`osascript -e 'tell application "Spotify" to player state as string'`;
-      if [ $state = "playing" ]; then
-        artist=`osascript -e 'tell application "Spotify" to artist of current track as string'`;
-        track=`osascript -e 'tell application "Spotify" to name of current track as string'`;
-
-        echo -n "$artist - $track";
-      fi
+        #musicapp=`osascript -e $'if application "Music" is running then\nreturn "running"\nelse\nreturn "nop"\nend if'`;
+        #spotifyapp=`osascript -e $'if application "Spotify" is running then\nreturn "running"\nelse\nreturn "nop"\nend if'`;
+        #sonosapp=`python3 ~/Desktop/sonos.py -p Den -c getstate`;
+        #if [ $musicapp = "running" ]; then
+        #  state=`osascript -e $'tell application "Music"\nget player state as string\nend tell'`;
+        #  if [ $state = "playing" ]; then
+        #    artist=`osascript -e $'tell application "Music"\nget artist of current track as string\nend tell'`;
+        #    track=`osascript -e $'tell application "Music"\nget name of current track as string\nend tell'`;
+        #    echo -n "♫ $artist - $track";
+        #  fi
+        #elif [ $spotifyapp = "running" ]; then
+        #  state=`osascript -e $'tell application "Spotify"\nget player state as string\nend tell'`;
+        #  if [ $state = "playing" ]; then
+        #    artist=`osascript -e $'tell application "Spotify"\nget artist of current track as string\nend tell'`;
+        #    track=`osascript -e $'tell application "Spotify"\nget name of current track as string\nend tell'`;
+        #    echo -n "♫ $artist - $track";
+        #  fi
+        #elif [ $sonosapp = "running" ]; then
+        #  state=`python3 ~/Desktop/sonos.py -p Den -c getsong`;
+        #  echo -n "$state" | tr -d '\n';
+        #else
+        #  echo -n "No Music"
+        #fi
     }
     POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status zsh_showStatus)
   ;;
@@ -197,7 +213,7 @@ if [ -f '/Users/clegault/google-cloud-sdk/completion.zsh.inc' ]; then source '/U
 
 # ZSH auto-completion for kubernetes.
 if [ $commands[kubectl] ]; then
-  source <(kubectl completion zsh)
+  source <(kubectl completion zsh 2>/dev/null)
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
