@@ -28,6 +28,8 @@ elif [[ $1 == "-shell-only" ]] || ask "$os: Do you  want to ONLY install the zsh
     echo "Shell Only install"
     apps=('01-package-manager.sh'
         '03-shell.sh'
+        '05-python.sh'
+        '06-ruby.sh'
         '08-vim.sh'
         '09-tmux.sh'
         '10-gnupg-git.sh'
