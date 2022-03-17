@@ -1,7 +1,12 @@
 #install rosetta if this is an M1
 if [[ $type == 'osx-arm' ]]; then
-  echo "M1 Mac detected, installing rosetta"
-  sudo softwareupdate --install-rosetta --agree
+  echo "M1 Mac detected, checking for rosetta..."
+  if [ $(/usr/bin/pgrep oahd >/dev/null 2>&1;echo $?) -eq 0 ]; then
+    echo 'rosetta installed';
+  else
+    echo 'roseta not installed, installing...'
+    sudo softwareupdate --install-rosetta --agree
+    fi
 fi
 
 # Setup any package manager required.
