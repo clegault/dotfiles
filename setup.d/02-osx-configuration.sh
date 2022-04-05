@@ -29,9 +29,12 @@ defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
 defaults write com.apple.finder NewWindowTarget -string "PfHm"
+defaults write com.apple.dock autohide-delay -float 0
+defaults write com.apple.dock autohide-time-modifier -int 0.3
 
 # Restart the Finder.
 killall -HUP Finder
+killall Dock
 
 echo "Setting up 'reattach-to-user-namespace' to allow proper clipboard support in the shell"
 brew install reattach-to-user-namespace
