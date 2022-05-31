@@ -29,6 +29,8 @@ if [[ "$os" == "osx" ]]; then
         'iterm2'
         'kubernetes-cli'
         'git'
+        'btop'
+        'kitty'
     )
     for app in ${apps[@]}; do
         echo "$os: Installing tool '${app}'"
@@ -36,6 +38,7 @@ if [[ "$os" == "osx" ]]; then
     done
     $(brew --prefix)/opt/fzf/install -all
     sudo gem install colorls
+    pip3 install ntfy
 elif [[ "$os" == "ubuntu" ]]; then
     apps=('silversearcher-ag'
         'fzf'
@@ -52,4 +55,6 @@ elif [[ "$os" == "ubuntu" ]]; then
     curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
     chmod +x ./kubectl
     sudo mv ./kubectl /usr/local/bin/kubectl
+    # btop installation
+    sudo snap install btop
 fi

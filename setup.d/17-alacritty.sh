@@ -10,16 +10,17 @@ if [[ "$os" != "osx" ]]; then
     return 0
 elif [[ $type == "osx-arm" ]]; then
     echo "Arm mac detected. Compiling Alacritty from source"
-    brew install rustup
-    rustup-init -y
-    source $HOME/.cargo/env
-    cd ~/src/
-    git clone https://github.com/alacritty/alacritty.git
-    cd alacritty
-    make app
-    cp -r target/release/osx/Alacritty.app /Applications/
-    sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
-    cd ../dotfiles/
+    brew install alacritty
+    #brew install rustup
+    #rustup-init -y
+    #source $HOME/.cargo/env
+    #cd ~/src/
+    #git clone https://github.com/alacritty/alacritty.git
+    #cd alacritty
+    #make app
+    #cp -r target/release/osx/Alacritty.app /Applications/
+    #sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
+    #cd ../dotfiles/
 else
     echo "Intel mac detected. Installing Alacritty"
     brew install alacritty
