@@ -3,12 +3,13 @@ if [[ "$os" == "osx" ]]; then
 
     echo "$os: Installing gpg..."
     # Install GPG and Pinentry for Mac.
-    brew install gnupg
+    brew install gpg-suite
 
     # Tell GPG to use pinentry-mac, and restart the agent. Create the gnupg
     # folder if we have to.
     mkdir -p ~/.gnupg
-    echo "pinentry-program /usr/local/bin/pinentry-mac" >> ~/.gnupg/gpg-agent.conf
+    echo "pinentry-program /usr/local/MacGPG2/libexec/pinentry-mac.app/Contents/MacOS/pinentry-mac" >> ~/.gnupg/gpg-agent.conf
+    echo "enable-ssh-support" >> ~/.gnupg/gpg-agent.conf
     gpgconf --kill gpg-agent
 
     # Make sure we lock down the gpg config folder.
