@@ -31,6 +31,8 @@ if [[ "$os" == "osx" ]]; then
         'git'
         'btop'
         'kitty'
+        'ripgrep'
+        'duf'
     )
     for app in ${apps[@]}; do
         echo "$os: Installing tool '${app}'"
@@ -46,6 +48,9 @@ elif [[ "$os" == "ubuntu" ]]; then
         'tldr'
         'tree'
         'ansible'
+        'ripgrep'
+        'duf'
+        'btop'
     )
     for app in ${apps[@]}; do
         echo "$os: Installing tool '${app}'"
