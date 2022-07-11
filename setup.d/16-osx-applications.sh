@@ -13,11 +13,9 @@ apps=('1password'
     'vlc'
     'whatsapp'
     'microsoft-teams'
-    'alfred'
     'tunnelblick'
     'snagit'
-    'firefox'
-    'brave'
+    'vivaldi'
     'fork'
     'kaleidoscope'
     'postman'
@@ -26,7 +24,12 @@ apps=('1password'
     'yed'
     'slack'
     '1password-cli'
-    'mas'
+    'istats-menu'
+    'barrier'
+    'raycast'
+    'kitty'
+    'alacritty'
+    'fantastical'
 )
 
 intelonlyapps=(
@@ -49,4 +52,11 @@ if [[ $type != 'osx-arm' ]]; then
             brew install ${app}
         fi
     done
+fi
+
+# Check for SSL cert from Barrier, sometimes it doesn't generate
+if [[ ! -f ~/Library/Application\ Support/barrier/SSL/Barrier.pem ]]; the 
+    mkdir -P ~/Library/Application\ Support/barrier/SSL/Fingerprints
+    openssl req -x509 -nodes -days 365 -subj /CN=Barrier -newkey rsa:4096 -keyout ~/Library/Application\ Support/barrier/SSL/Barrier.pem -out ~/Library/Application\ Support/barrier/SSL/Barrier.pem
+    openssl x509 -fingerprint -sha1 -noout -in ~/Library/Application\ Support/barrier/SSL/Barrier.pem > ~/Library/Application\ Support/barrier/SSL/Fingerprints/Local.txt
 fi

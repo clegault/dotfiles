@@ -25,12 +25,9 @@ if [[ "$os" == "osx" ]]; then
         'ossp-uuid' # uuid linux tool
         'tree'
         'wget'
-        'spotify'
-        'iterm2'
         'kubernetes-cli'
         'git'
         'btop'
-        'kitty'
         'ripgrep'
         'duf'
     )
