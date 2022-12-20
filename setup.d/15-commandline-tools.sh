@@ -30,6 +30,11 @@ if [[ "$os" == "osx" ]]; then
         'btop'
         'ripgrep'
         'duf'
+        'autojump'
+        'ranger'
+        'lukechilds/tap/gifgen'
+        'neofetch'
+        'thefuck'
     )
     for app in ${apps[@]}; do
         echo "$os: Installing tool '${app}'"
@@ -48,11 +53,15 @@ elif [[ "$os" == "ubuntu" ]]; then
         'ripgrep'
         'duf'
         'btop'
+        'autojump'
+        'ranger'
+        'neofetch'
     )
     for app in ${apps[@]}; do
         echo "$os: Installing tool '${app}'"
         sudo apt install -y ${app}
     done
+    sudo pip3 install thefuck
     sudo gem install colorls
     curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
     chmod +x ./kubectl

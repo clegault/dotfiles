@@ -6,7 +6,6 @@ fi
 
 apps=('1password'
     'discord'
-    'spotmenu'
     'forklift'
     'vagrant'
     'visual-studio-code'
@@ -30,6 +29,7 @@ apps=('1password'
     'kitty'
     'alacritty'
     'fantastical'
+    'rancher'
 )
 
 intelonlyapps=(

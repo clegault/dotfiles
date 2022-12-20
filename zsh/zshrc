@@ -211,10 +211,16 @@ if [ -f "/usr/libexec/path_helper" ]; then
     eval $(/usr/libexec/path_helper -s)
 fi
 
+# Configure thefuck
+if [ -f '/opt/homebrew/bin/thefuck' ] || [ -f '/usr/local/bin/thefuck' ]; then eval $(thefuck --alias); fi
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/clegault/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/clegault/google-cloud-sdk/path.zsh.inc'; fi
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/clegault/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/clegault/google-cloud-sdk/completion.zsh.inc'; fi
+# The next line enables autojump profile 
+if [ -f /opt/homebrew/etc/profile.d/autojump.sh ]; then source '/opt/homebrew/etc/profile.d/autojump.sh'; fi
+if [ -f /usr/share/autojump/autojump.sh ]; then source '/usr/share/autojump/autojump.sh'; fi
 
 # ZSH auto-completion for kubernetes.
 if [ $commands[kubectl] ]; then
@@ -232,8 +238,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-complete -o nospace -C /opt/homebrew/bin/terraform terraform
+# The next line prints out a pretty logo at login
+if [ -f /usr/bin/neofetch ] || [ -f /opt/homebrew/bin/neofetch ]; then neofetch; fi
 
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="/Users/clegault/.rd/bin:$PATH"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+complete -o nospace -C /opt/homebrew/bin/terraform terraform
