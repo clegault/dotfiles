@@ -69,9 +69,7 @@ elif [[ "$os" == "ubuntu" ]]; then
     #duf installation:
     mkdir /tmp/dotfiles
     cd /tmp/dotfiles
-    curl -s https://api.github.com/repos/muesli/duf/releases/latest |
-	    grep -o "https://.*\.amd64\.deb" |
-	    xargs curl -fsLJO
+    curl -s https://api.github.com/repos/muesli/duf/releases/latest | grep -o "https://.*\.amd64\.deb" | xargs curl -fsLJO
     sudo dpkg --install ./*.deb
     cd
     rm -rf /tmp/dotfiles
