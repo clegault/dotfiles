@@ -1,0 +1,32 @@
+{
+  :templates {
+   :hyper "open -g hammerspoon://hyper?action=%s\\&target=%s"
+  }
+:layers {
+   :default {:key :caps_lock :alone {:key :escape}}
+ }
+:main [
+    {
+      :des "Default layer"
+      :rules [:default
+        [:o [:hyper "open" "default"]]
+        [:h [:hyper "navigate" "back"]]
+        [:j [:hyper "navigate" "down"]]
+        [:k [:hyper "navigate" "up"]]
+        [:l [:hyper "navigate" "forward"]]
+        [:p [:hyper "paste" "default"]]
+        [:y [:hyper "copy" "default"]]
+        [:i [:hyper "insert" "default"]]
+        [:delete_or_backspace [:hyper "lock" "default"]]
+        [:period [:hyper "execute" "default"]]
+        [:keypad_8 [:hyper "windowSize" "up"]]
+        [:keypad_2 [:hyper "windowSize" "down"]]
+        [:keypad_4 [:hyper "windowSize" "left"]]
+        [:keypad_6 [:hyper "windowSize" "right"]]
+        [:keypad_5 [:hyper "windowSize" "center"]]
+        [:m [:hyper "open" "messages"]]
+        [:f [:hyper "fullscreen" "default"]]
+      ]
+    }
+ ]
+}

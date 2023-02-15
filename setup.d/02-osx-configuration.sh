@@ -36,6 +36,12 @@ defaults write com.apple.dock autohide-time-modifier -int 0.3
 killall -HUP Finder
 killall Dock
 
+echo "Setting up hammerspoon, karabiner and raycast"
+ensure_symlink "$(pwd)/hammerspoon" "$HOME/.hammerspoon"
+ensure_symlink "$(pwd)/raycast" "$HOME/.config/raycast"
+ensure_symlink "$(pwd)/karabiner/karabiner" "$HOME/.config/karabiner"
+ensure_symlink "$(pwd)/karabiner/karabiner.edn" "$HOME/.config/karabiner.edn"
+
 echo "Setting up 'reattach-to-user-namespace' to allow proper clipboard support in the shell"
 brew install reattach-to-user-namespace
 
