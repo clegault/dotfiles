@@ -6,12 +6,15 @@ if [[ "$os" == "osx" ]]; then
     echo "$(brew --prefix)/bin/zsh" | sudo tee -a /etc/shells
 elif [[ "$os" == "ubuntu" ]]; then
     sudo apt-get install -y zsh
+elif [[ "$os" == "alpine" ]]; then
+    apk add zsh curl
 fi
 
 # Our zshrc assumes oh-my-zsh, ask to install it first.
 echo "Installing current oh-my-zsh"
 # Run the unattended install, see:
 # https://github.com/ohmyzsh/ohmyzsh#unattended-install
+cd ~
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 # install the zsh plugins for oh-my-zsh
@@ -31,7 +34,9 @@ ln -sf ${PWD}/zsh/zshrc ~/.zshrc
 
 # Move to zsh.
 echo "$os: checking shell..."
-if [[ ! "$SHELL" =~ zsh$ ]]; then
+if [[ ! "$os" == "alpine" ]]; then
+    echo "$os: can't change shell for alpine"
+elif [[ ! "$SHELL" =~ zsh$ ]]; then
     echo "Changing shell to zsh"
     if [[ $os == "ubuntu" ]]; then
         sudo chsh -s `$(command echo which zsh)` $USER

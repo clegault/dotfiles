@@ -1,5 +1,9 @@
+# Bail if we are a container.
+if [[ "$os" == "alpine" ]]; then
+    echo "warning: will not install tmux on container, stopping..."
+    return 0
+fi
 # Ensure tmux is up to date.
-
 if [[ "$os" == "osx" ]]; then
     echo "$os: installing tmux..."
     brew install tmux

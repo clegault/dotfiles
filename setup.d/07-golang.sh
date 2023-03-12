@@ -1,3 +1,8 @@
+# Bail if we are a container.
+if [[ "$os" == "alpine" ]]; then
+    echo "warning: will not install nvm on container, stopping..."
+    return 0
+fi
 # Setup parameters.
 gopath="$HOME/go"
 

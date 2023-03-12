@@ -6,6 +6,9 @@ mkdir ~/.vim
 if [[ "$os" == "osx" ]]; then
     echo "$os: Installing vim..."
     brew install vim
+elif [[ "$os" == "alpine" ]]; then
+    echo "$os: Installing vim..."
+    apk add vim
 fi
 
 # Note: I no longer use Vundle, having migrated to Vim-Plug. However, if you

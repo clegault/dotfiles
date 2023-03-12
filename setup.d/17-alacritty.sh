@@ -1,8 +1,12 @@
+# Bail if we are a container.
+if [[ "$os" == "alpine" ]]; then
+    echo "warning: will not setup alacritty on container, stopping..."
+    return 0
+fi
 #set up the config file
 if [[ ! -e "$HOME/.config" ]]; then
     mkdir ~/.config
 fi
-ensure_symlink "$(pwd)/alacritty" "$HOME/.config/alacritty"
 
 # Bail if we are not on OSX.
 if [[ "$os" != "osx" ]]; then
@@ -25,3 +29,4 @@ else
     echo "Intel mac detected. Installing Alacritty"
     brew install alacritty
 fi
+ensure_symlink "$(pwd)/alacritty" "$HOME/.config/alacritty"

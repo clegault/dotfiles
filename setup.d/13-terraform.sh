@@ -1,3 +1,8 @@
+# Bail if we are a container.
+if [[ "$os" == "alpine" ]]; then
+    echo "warning: will not install nvm on container, stopping..."
+    return 0
+fi
 # Configure Terraform.
 echo "Setting up Terraform and Terraform Lint"
 if [[ "$os" == "osx" ]]; then

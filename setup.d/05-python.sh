@@ -1,4 +1,8 @@
-# Install pyrev and python.
+# Bail if we are a container.
+if [[ "$os" == "alpine" ]]; then
+    echo "warning: will not install python on container, stopping..."
+    return 0
+fi
 if [[ "$os" == "osx" ]]; then
     echo "$os: Installing pyenv..."
     brew install pyenv

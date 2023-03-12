@@ -1,3 +1,8 @@
+# Bail if we are a container.
+if [[ "$os" == "alpine" ]]; then
+    echo "warning: will not install ruby on container, stopping..."
+    return 0
+fi
 # Install RVM, but do not automatically try and edit a bash profile or whatever
 # to source commands, we'll handle that ourselves in the ~/.shell.d/ruby.sh
 # script. Get the GPG keys first.

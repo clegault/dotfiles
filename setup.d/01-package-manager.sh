@@ -27,7 +27,6 @@ elif [[ "$os" == "ubuntu" ]]; then
     echo "$os: Updating apt..."
     sudo apt update -y
     sudo apt upgrade -y
-
     # Ensure that snap is installed for Ubuntu.
     if [[ ! -x "$(command -v snap)" ]]; then
         echo "$os: Installing snap..."
@@ -35,4 +34,9 @@ elif [[ "$os" == "ubuntu" ]]; then
     else
         echo "$os: 'snap' is installed..."
     fi
+elif [[ "$(command -v apk)" ]]; then
+    echo "Alpine: Updating apk..."
+    apk update
+    apk upgrade
+    os = "alpine"
 fi

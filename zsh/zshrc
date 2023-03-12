@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/Library/Python/3.9/bin:$HOME/.local/bin:$HOME/bin:/usr/local/bin:/usr/local/opt/python/libexec/bin:/opt/homebrew/sbin:/opt/homebrew/bin:/usr/local/sbin/:~/Library/Python/3.8/bin:$PATH
+export PATH=$HOME/Library/Python/3.9/bin:$HOME/.local/bin:$HOME/bin:/usr/local/bin:/usr/local/opt/python/libexec/bin:/opt/homebrew/sbin:/opt/homebrew/bin:/usr/local/sbin/:~/Library/Python/3.8/bin:/usr/local/MacGPG2/bin/:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
@@ -242,3 +242,8 @@ export NVM_DIR="$HOME/.nvm"
 if [ -f /usr/bin/neofetch ] || [ -f /opt/homebrew/bin/neofetch ]; then neofetch; fi
 
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/clegault/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)%
+source /Users/clegault/.config/op/plugins.sh
