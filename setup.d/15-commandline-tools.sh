@@ -73,4 +73,6 @@ elif [[ "$os" == "ubuntu" ]]; then
     sudo dpkg --install ./*.deb
     cd
     rm -rf /tmp/dotfiles
+else
+    echo "Probably installing in a container, not installing extra tools. Stoping..."
 fi

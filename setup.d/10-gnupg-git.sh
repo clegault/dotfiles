@@ -23,5 +23,7 @@ if [[ "$os" == "osx" ]]; then
 elif [[ "$os" == "ubuntu" ]]; then
     echo "$os: Installing gpg..."
     sudo apt install -y gnupg
+else
+    echo "Probably installing in a container, not installing GPG. Stoping..."
 fi
 
