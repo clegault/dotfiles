@@ -247,6 +247,8 @@ if [ -f /usr/bin/neofetch ] || [ -f /opt/homebrew/bin/neofetch ]; then neofetch;
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="/Users/clegault/.rd/bin:$PATH"
+export PATH="~/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)%
-source /Users/clegault/.config/op/plugins.sh
+if [[ "$(command -v op)" ]]; then
+  source ~/.config/op/plugins.sh
+fi
