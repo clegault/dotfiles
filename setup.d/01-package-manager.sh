@@ -34,9 +34,8 @@ elif [[ "$os" == "ubuntu" ]]; then
     else
         echo "$os: 'snap' is installed..."
     fi
-elif [[ "$(command -v apk)" ]]; then
+elif [[ "$os" == "alpine" ]]; then
     echo "Alpine: Updating apk..."
     apk update
     apk upgrade
-    os = "alpine"
 fi

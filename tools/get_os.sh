@@ -9,6 +9,8 @@ get_os() {
         echo "osx"
     elif [[ "$un" =~ [Uu]buntu ]]; then
         echo "ubuntu"
+    elif [[ "$(command -v apk)" ]]; then
+        echo "alpine"
     else
         logger -s "Unable to idenfify operating system from uname '$un'"
         exit 1
