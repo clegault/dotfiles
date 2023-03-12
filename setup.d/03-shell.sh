@@ -14,7 +14,7 @@ fi
 echo "Installing current oh-my-zsh"
 # Run the unattended install, see:
 # https://github.com/ohmyzsh/ohmyzsh#unattended-install
-cd ~
+
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 # install the zsh plugins for oh-my-zsh
