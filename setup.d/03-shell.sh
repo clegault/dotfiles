@@ -34,7 +34,7 @@ ln -sf ${PWD}/zsh/zshrc ~/.zshrc
 
 # Move to zsh.
 echo "$os: checking shell..."
-if [[ ! "$os" == "alpine" ]]; then
+if [[ "$os" == "alpine" ]]; then
     echo "$os: can't change shell for alpine"
 elif [[ ! "$SHELL" =~ zsh$ ]]; then
     echo "Changing shell to zsh"
