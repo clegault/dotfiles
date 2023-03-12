@@ -1,8 +1,3 @@
-# Bail if we are a container.
-if [[ "$os" == "alpine" ]]; then
-    echo "warning: will not install tmux on container, stopping..."
-    return 0
-fi
 # Ensure tmux is up to date.
 if [[ "$os" == "osx" ]]; then
     echo "$os: installing tmux..."
@@ -10,6 +5,9 @@ if [[ "$os" == "osx" ]]; then
 elif [[ "$os" == "ubuntu" ]]; then
     echo "$os: installing tmux..."
     sudo apt-get install -y tmux
+elif [[ "$os" == "alpine" ]]; then
+    echo "$os: installing tmux..."
+    apk add tmux
 fi
 ensure_symlink "$(pwd)/tmux/tmux.conf" "$HOME/.tmux.conf"
 
