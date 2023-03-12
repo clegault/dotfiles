@@ -7,7 +7,7 @@ if [[ "$os" == "osx" ]]; then
 elif [[ "$os" == "ubuntu" ]]; then
     sudo apt-get install -y zsh
 elif [[ "$os" == "alpine" ]]; then
-    apk add zsh curl
+    apk add zsh zsh-vcs
 fi
 
 # Our zshrc assumes oh-my-zsh, ask to install it first.
