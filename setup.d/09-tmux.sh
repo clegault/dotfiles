@@ -8,6 +8,9 @@ elif [[ "$os" == "ubuntu" ]]; then
 elif [[ "$os" == "alpine" ]]; then
     echo "$os: installing tmux..."
     apk add tmux
+elif [[ "$os" == "debianContainer" ]]; then
+    echo "$os: installing tmux..."
+    apt install tmux -y
 fi
 ensure_symlink "$(pwd)/tmux/tmux.conf" "$HOME/.tmux.conf"
 

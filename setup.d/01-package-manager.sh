@@ -38,4 +38,8 @@ elif [[ "$os" == "alpine" ]]; then
     echo "Alpine: Updating apk..."
     apk update
     apk upgrade
+elif [[ "$os" == "debianContainer" ]]; then
+    echo "Alpine: Updating apk..."
+    apt update
+    apt upgrade -y
 fi

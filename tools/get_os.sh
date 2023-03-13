@@ -11,6 +11,8 @@ get_os() {
         echo "ubuntu"
     elif [[ "$(command -v apk)" ]]; then
         echo "alpine"
+    elif [[ "${REMOTE_CONTAINERS}" && $(command -v apt) ]]; then
+        echo "debianContainer"
     else
         logger -s "Unable to idenfify operating system from uname '$un'"
         exit 1

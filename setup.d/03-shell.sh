@@ -8,6 +8,8 @@ elif [[ "$os" == "ubuntu" ]]; then
     sudo apt-get install -y zsh
 elif [[ "$os" == "alpine" ]]; then
     apk add zsh zsh-vcs
+elif [[ "$os" == "debianContainer" ]]; then
+    apt install zsh -y
 fi
 
 # Our zshrc assumes oh-my-zsh, ask to install it first.

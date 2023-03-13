@@ -1,5 +1,5 @@
 # Bail if we are a container.
-if [[ "$os" == "alpine" ]]; then
+if [[ "$os" == "alpine" || "$os" == "debianContainer"]]; then
     echo "warning: will not install python on container, stopping..."
     return 0
 fi
