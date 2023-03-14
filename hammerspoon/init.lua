@@ -205,7 +205,7 @@ hyper:app(vscode)
 -- }}}
 
 -- Start zoom spoon
-zoomStatusMenuBarItem = hs.menubar.new(nil)
+zoomStatusMenuBarItem = hs.menubar.new(true)
 zoomStatusMenuBarItem:setClickCallback(function()
     toggleMute()
 end)
