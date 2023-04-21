@@ -125,6 +125,7 @@ slack = "com.tinyspeck.slackmacgap"
 discord = 'com.hnc.Discord'
 chrome = "com.vivaldi.Vivaldi"
 vscode = "com.microsoft.VSCode"
+arc = "company.thebrowser.Browser"
 
 hs.hotkey.bind({"cmd", "shift", "alt", "ctrl"}, "f", function()
     _mouseOrigin = hs.mouse.absolutePosition()
@@ -194,7 +195,21 @@ hyper:app(chrome)
         default = copy(keys('yy')),
     })
 
+hyper:app(arc)
+    :action('open', {
+        default = combo({'cmd'}, 'l'),
+    })
+    :action('navigate', {
+        up = combo({'cmd', 'shift'}, ']'),
+        down = combo({'cmd', 'shift'}, '['),
+        back = combo({'cmd'}, '['),
+        forward = combo({'cmd'}, ']'),
+    })
+
 hyper:app(vscode)
+    :action('open', {
+        default = combo({'cmd', 'shift'}, 'p'),
+    })
     :action('copy', {
         default = copy(combo({'cmd', 'option', 'control'}, 'y')),
     })
