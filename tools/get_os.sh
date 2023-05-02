@@ -26,6 +26,7 @@ get_os() {
         else
             os="unknown"
         fi
+    fi
 
     if [[ "$os" == "unknown" ]]; then
         logger -s "Unable to idenfify operating system from uname '$un'"
