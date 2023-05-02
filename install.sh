@@ -17,6 +17,20 @@
 #    echo "Installing git"
 #    sudo apt install -y git
 #fi
+if [ ! -x "$(command -v git)" ]; then
+    echo "Installing git"
+    if [ -x "$(command -v apk)" ]; then
+        apk update
+        apk install git
+    elif [ -x "$(command -v apt)" ]; then
+        apt update
+        apt install git -y
+    else
+        echo "Pleaes install git and try again"
+        return 0;
+    fi
+fi
+
 echo "Starting installation..."
 mkdir ~/src
 cd ~/src/
