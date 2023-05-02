@@ -74,7 +74,7 @@ elif [[ "$os" == "ubuntu" ]]; then
         echo "Checksum is invalid"
         echo "You will need to install kubectl manually"
     fi
-    cd
+    cd -
     rm -rf /tmp/dotfiles
 else
     echo "Probably installing in a container, not installing extra tools. Stoping..."

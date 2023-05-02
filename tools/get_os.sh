@@ -9,7 +9,6 @@ get_os() {
     local un=$(uname -a)
     os="unknown"
     if [ -n "$(grep 'kthreadd' /proc/2/status 2>/dev/null)" ]; then
-        echo "Not in container"
         if [[ "$un" =~ [Dd]arwin ]]; then
             echo "osx"
         elif [[ "$un" =~ [Uu]buntu ]]; then
@@ -18,7 +17,6 @@ get_os() {
             os="unknown"
         fi
     else
-        echo "In a container"
         if [[ "$(command -v apk)" ]]; then
             echo "alpine"
         elif [[ "$(command -v apt)" ]]; then
