@@ -18,4 +18,4 @@
 #     sudo apt-get update
 #     sudo apt-get install azure-cli
 # fi
-echo "Currently broken"
+echo "Cloud-clis (awx, azure) Currently disabled"

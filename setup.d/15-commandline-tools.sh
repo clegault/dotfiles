@@ -54,6 +54,8 @@ elif [[ "$os" == "ubuntu" ]]; then
         'autojump'
         'ranger'
         'neofetch'
+        'btop'
+        'duf'
     )
     for app in ${apps[@]}; do
         echo "$os: Installing tool '${app}'"
@@ -61,16 +63,18 @@ elif [[ "$os" == "ubuntu" ]]; then
     done
     sudo pip3 install thefuck
     sudo gem install colorls
-    curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
-    chmod +x ./kubectl
-    sudo mv ./kubectl /usr/local/bin/kubectl
-    # btop installation
-    sudo snap install btop
-    #duf installation:
     mkdir /tmp/dotfiles
     cd /tmp/dotfiles
-    curl -s https://api.github.com/repos/muesli/duf/releases/latest | grep -o "https://.*\.amd64\.deb" | xargs curl -fsLJO
-    sudo dpkg --install ./*.deb
+    curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+    curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+    if echo "$(cat kubectl.sha256) kubectl" | sha256sum --check --status; then
+        echo "Checksum is valid"
+        chmod +x ./kubectl
+        sudo mv ./kubectl /usr/local/bin/kubectl
+    else
+        echo "Checksum is invalid"
+        echo "You will need to install kubectl manually"
+    fi
     cd
     rm -rf /tmp/dotfiles
 else
