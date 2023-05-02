@@ -34,6 +34,7 @@ elif [[ $1 == "-shell-only" ]] || ask "$os: Do you  want to ONLY install the zsh
         '09-tmux.sh'
         '10-gnupg-git.sh'
         '15-commandline-tools.sh'
+        '18-finsihed.sh'
     )
     for app in "${apps[@]}"; do
         echo "$os: Running script:  '${app}"

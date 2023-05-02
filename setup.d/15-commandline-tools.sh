@@ -69,8 +69,7 @@ elif [[ "$os" == "ubuntu" ]]; then
     curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
     if echo "$(cat kubectl.sha256) kubectl" | sha256sum --check --status; then
         echo "Checksum is valid"
-        chmod +x ./kubectl
-        sudo mv ./kubectl /usr/local/bin/kubectl
+        sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
     else
         echo "Checksum is invalid"
         echo "You will need to install kubectl manually"
