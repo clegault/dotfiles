@@ -9,6 +9,9 @@ elif [[ "$os" == "ubuntu" ]]; then
 elif [[ "$os" == "alpine" ]]; then
     apk add zsh zsh-vcs
 elif [[ "$os" == "debianContainer" ]]; then
+    apt-get install locales
+    sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
+    dpkg-reconfigure --frontend=noninteractive locales
     apt install zsh -y
 fi
 
