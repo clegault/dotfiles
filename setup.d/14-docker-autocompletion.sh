@@ -1,6 +1,6 @@
 # Bail if we are a container.
 if [[ "$os" == "alpine" ]] || [[ "$os" == "debianContainer" ]]; then
-    echo "warning: will not install nvm on container, stopping..."
+    echo "warning: will not install docker autocompletes on container, stopping..."
     return 0
 fi
 # Note the standard zsh autocompletion paths.
