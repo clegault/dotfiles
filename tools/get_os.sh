@@ -1,19 +1,33 @@
 # Echo's the operating system, simplified to:
 # - osx
-# - ubuntu
+# - ubuntu/debian
+# - container
+#   - ubuntu/debian
+#   - alpine
 get_os() {
     # Identify the operating system.
     local un=$(uname -a)
     os="unknown"
-    if [[ "$un" =~ [Dd]arwin ]]; then
-        echo "osx"
-    elif [[ "$un" =~ [Uu]buntu ]]; then
-        echo "ubuntu"
-    elif [[ "$(command -v apk)" ]]; then
-        echo "alpine"
-    elif [[ "$(command -v apt)" ]]; then
-        echo "debianContainer"
+    if [ -n "$(grep 'kthreadd' /proc/2/status 2>/dev/null)" ]; then
+        echo "Not in container"
+        if [[ "$un" =~ [Dd]arwin ]]; then
+            echo "osx"
+        elif [[ "$un" =~ [Uu]buntu ]]; then
+            echo "ubuntu"
+        else
+            os="unknown"
+        fi
     else
+        echo "In a container"
+        if [[ "$(command -v apk)" ]]; then
+            echo "alpine"
+        elif [[ "$(command -v apt)" ]]; then
+            echo "debianContainer"
+        else
+            os="unknown"
+        fi
+
+    if [[ "$os" == "unknown" ]]; then
         logger -s "Unable to idenfify operating system from uname '$un'"
         exit 1
     fi
