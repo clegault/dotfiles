@@ -23,10 +23,16 @@ if [ ! -x "$(command -v git)" ]; then
         apk update
         apk install git
     elif [ -x "$(command -v apt)" ]; then
-        apt update
-        apt install git -y
+        if [ -x "$(command -v sudo)" ]; then
+            sudo apt update
+            sudo apt install git -y
+        else
+            echo "Trying without sudo, if this fails you will need to manually install git before continuing."
+            apt update
+            apt install git -y
+        fi
     else
-        echo "Pleaes install git and try again"
+        echo "Please manually install git and try again"
         return 0;
     fi
 fi
