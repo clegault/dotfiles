@@ -12,7 +12,7 @@ spaceMap = { }
 currentSpace = 1
 
 -- Our menu item
-workspaceMenuItem = hs.menubar.new()
+workspaceMenuItem = hs.menubar.new(true)
 
 function spacesDebug()
     print('Current space: ' .. currentSpace)

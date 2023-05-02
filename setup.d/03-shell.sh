@@ -36,8 +36,8 @@ ln -sf ${PWD}/zsh/zshrc ~/.zshrc
 
 # Move to zsh.
 echo "$os: checking shell..."
-if [[ "$os" == "alpine" ]]; then
-    echo "$os: can't change shell for alpine"
+if [[ "$os" == "alpine" ]] || [[ "$os" == "debianContainer" ]]; then
+    echo "$os: can't change shell for container"
 elif [[ ! "$SHELL" =~ zsh$ ]]; then
     echo "Changing shell to zsh"
     if [[ $os == "ubuntu" ]]; then

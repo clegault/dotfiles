@@ -9,6 +9,9 @@ if [[ "$os" == "osx" ]]; then
 elif [[ "$os" == "alpine" ]]; then
     echo "$os: Installing vim..."
     apk add vim
+elif [[ "$os" == "debianContainer" ]]; then
+    echo "$os: Installing vim..."
+    apt install vim -y
 fi
 
 # Note: I no longer use Vundle, having migrated to Vim-Plug. However, if you

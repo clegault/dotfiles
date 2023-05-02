@@ -1,6 +1,6 @@
 -- {{{ global mute for zoom and teams
 -- Mute Button
-local muteButton = hs.menubar.new()
+local muteButton = hs.menubar.new(true)
 muteButton:setTitle("Mute Toggle")
 
 function _check(tbl)
