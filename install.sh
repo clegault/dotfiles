@@ -18,12 +18,15 @@
 #    sudo apt install -y git
 #fi
 if [ ! -x "$(command -v git)" ]; then
-    echo "Installing git"
+    echo "Installing git..."
     if [ -x "$(command -v apk)" ]; then
+        echo "Checking for Alpine linux..."
         apk update
         apk install git
     elif [ -x "$(command -v apt)" ]; then
+        echo "Checking for Ubuntu/Debian based linux..."
         if [ -x "$(command -v sudo)" ]; then
+            echo "Found sudo, so using it..."
             sudo apt update
             sudo apt install git -y
         else
