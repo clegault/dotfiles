@@ -2,6 +2,9 @@
 
 This repository contains all of my configuration for MacOS and Linux, with a focus on terminal, editor, shell, programming environments etc. This repository can easily be forked to allow you to create and customise your own machine setup.
 
+### **NOTE**
+**Karabiner settings on MacOS do NOT work if it's settings are on a different volume and symlinked to your home dir.**
+
 This repository also contains some handy [Shell Scripts and Aliases](#shell-scripts-and-aliases) that others might find helpful.
 
 Some key features are:
