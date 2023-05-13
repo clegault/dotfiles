@@ -2,7 +2,7 @@ Lights = {
     ['name'] = 'Lights on/off',
     ['image'] = streamdeck_imageFromText('􀛮'),
     ['onClick'] = function()
-        lightsOnOff()
+        onOff()
     end
 }
 

@@ -1,4 +1,3 @@
-require "hyperKeyDef"
 require "util"
 
 -- F.lux Functionality {{{

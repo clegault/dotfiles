@@ -1,5 +1,3 @@
-require "hyperKeyDef"
-
 function updateGridForScreen(screen)
     -- The largest comfortable size to use for the keyboards I type on
     size = hs.geometry.size(10, 4)

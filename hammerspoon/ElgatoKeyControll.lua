@@ -43,12 +43,6 @@ function KeyBrightUpDown(i)
     local status, response, header = hs.http.doRequest("http://" .. ip2 .. ":" .. port .. "/elgato/lights", "PUT", hs.json.encode(settings))
 end
 
-function lightsOnOff()
-  onOff()
-
-  return self
-end
-
 function brightUp()
   KeyBrightUpDown(1)
 

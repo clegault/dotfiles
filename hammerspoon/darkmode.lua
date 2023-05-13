@@ -1,4 +1,3 @@
-require "hyperKeyDef"
 require "util"
 
 function isInDarkMode()

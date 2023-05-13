@@ -1,4 +1,3 @@
-require "hyperKeyDef"
 require "util"
 require "home_assistant"
 

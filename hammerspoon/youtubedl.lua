@@ -1,4 +1,3 @@
-require "hyperKeyDef"
 require "terminal"
 
 -- requires youtube-dl and my ytd script

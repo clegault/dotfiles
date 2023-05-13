@@ -1,5 +1,3 @@
-require "hyperKeyDef"
-
 -- requires the python "pinboard" module:
 -- pip install pinboard
 

@@ -1,8 +1,6 @@
-require "hyperKeyDef"
-
 -- Brightness Control {{{
 
-function changeBrightnessInDirection (d)
+function changeBrightnessInDirection(d)
     local brightnessChangeAmount = 16
     local brightness = hs.brightness.get()
 
