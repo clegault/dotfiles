@@ -54,6 +54,66 @@ local layoutConfig = {
     -- activate('com.googlecode.iterm2')
   end),
 
+  ['com.culturedcode.ThingsMac'] = (function(window)
+    local thingsWindow = hs.window.find("Things")
+    thingsWindow:focus()
+    if not thingsWindow:isFullScreen() then
+      hs.grid.set(window, grid.bottomHalf, externalDisplay())
+      hs.eventtap.keyStroke({"cmd", "ctrl"}, "f")
+    end
+  end),
+  
+  ['net.kovidgoyal.kitty'] = (function(window)
+    local kittyWindow = hs.window.find("zsh")
+    kittyWindow:focus()
+    if not kittyWindow:isFullScreen() then
+      hs.grid.set(window, grid.bottomHalf, externalDisplay())
+      hs.eventtap.keyStroke({"cmd", "ctrl"}, "f")
+    end
+  end),
+
+  ['com.apple.MobileSMS'] = (function(window)
+    hs.application.launchOrFocus("Messages")
+    if messagesActive then
+      messagesActive = false
+    else
+      messagesActive = true
+      hs.eventtap.keyStroke({"ctrl", "alt"}, "n")
+    end
+  end),
+
+  ['com.apple.Music'] = (function(window)
+      local musicWindow = hs.window.find("Music")
+    musicWindow:focus()
+    if not musicWindow:isFullScreen() then
+      hs.grid.set(window, grid.bottomHalf, hs.screen.primaryScreen())
+      hs.eventtap.keyStroke({"cmd", "ctrl"}, "f")
+    end
+  end),
+    ['com.tinyspeck.slackmacgap'] = (function(window)
+    local slackWindow = hs.window.find("Slack")
+    slackWindow:focus()
+    if not slackWindow:isFullScreen() then
+      hs.grid.set(window, grid.bottomHalf, externalDisplay())
+      hs.eventtap.keyStroke({"cmd", "ctrl"}, "f")
+    end
+  end),
+
+['com.hnc.Discord'] = (function(window)
+  --  find discord windows
+    local discordWindow = hs.window.find("Discord")
+    -- get only the one that is not the Updater window
+    if discordWindow and not string.match(discordWindow:title(), "Updater") then
+      -- set focus to the main window
+      discordWindow:focus()
+      -- check if it's full screen already, if it is not, go to full screen
+      if not discordWindow:isFullScreen() then
+        hs.grid.set(window, grid.topHalf, externalDisplay())
+        hs.eventtap.keyStroke({"cmd", "ctrl"}, "f")
+      end
+    end
+end),
+
 --   ['com.freron.MailMate'] = (function(window, forceScreenCount)
 --     local count = forceScreenCount or screenCount
 --     if isMailMateMailViewer(window) then
@@ -73,31 +133,6 @@ local layoutConfig = {
 --     hs.grid.set(window, grid.bottomHalf, externalDisplay())
 --     hs.eventtap.keyStroke({"cmd", "ctrl"}, "f")
 --   end),
-
-  ['com.culturedcode.ThingsMac'] = (function(window)
-    hs.grid.set(window, grid.bottomHalf, externalDisplay())
-    hs.eventtap.keyStroke({"cmd", "ctrl"}, "f")
-  end),
-  
-  ['net.kovidgoyal.kitty'] = (function(window)
-    hs.grid.set(window, grid.bottomHalf, externalDisplay())
-    hs.eventtap.keyStroke({"cmd", "ctrl"}, "f")
-  end),
-
-  ['com.apple.MobileSMS'] = (function(window)
-    hs.application.launchOrFocus("Messages")
-    if messagesActive then
-      messagesActive = false
-    else
-      messagesActive = true
-      hs.eventtap.keyStroke({"ctrl", "alt"}, "n")
-    end
-  end),
-
-  ['com.apple.Music'] = (function(window)
-    hs.grid.set(window, grid.bottomHalf, hs.screen.primaryScreen())
-    hs.eventtap.keyStroke({"cmd", "ctrl"}, "f")
-  end),
 
   -- ['com.microsoft.teams'] = (function(window)
   --   local teamsWindow = hs.window.find("| Microsoft Teams")
@@ -133,30 +168,6 @@ local layoutConfig = {
   --     end)
   --   end
   -- end),
-
-  ['com.tinyspeck.slackmacgap'] = (function(window)
-    local slackWindow = hs.window.find("Slack")
-    slackWindow:focus()
-    if not slackWindow:isFullScreen() then
-      hs.grid.set(window, grid.bottomHalf, externalDisplay())
-      hs.eventtap.keyStroke({"cmd", "ctrl"}, "f")
-    end
-  end),
-
-['com.hnc.Discord'] = (function(window)
-  --  find discord windows
-    local discordWindow = hs.window.find("Discord")
-    -- get only the one that is not the Updater window
-    if discordWindow and not string.match(discordWindow:title(), "Updater") then
-      -- set focus to the main window
-      discordWindow:focus()
-      -- check if it's full screen already, if it is not, go to full screen
-      if not discordWindow:isFullScreen() then
-        hs.grid.set(window, grid.topHalf, externalDisplay())
-        hs.eventtap.keyStroke({"cmd", "ctrl"}, "f")
-      end
-    end
-end),
 }
 
 
@@ -256,13 +267,15 @@ function handleAppEvent(element, event)
     if pcall(function()
       log.df('[event] window %s created', element:id())
       local win = hs.window.focusedWindow()
-      -- dbg(win)
     end) then
+      -- dbg("Window: " ..tostring(win))
+      -- dbg("Event: " ..tostring(event))
       watchWindow(element)
     else
       log.wf('error thrown trying to access element in handleAppEvent')
     end
   else
+    -- dbug("unexpected app event")
     log.wf('unexpected app event %d received', event)
   end
 end
