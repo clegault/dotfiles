@@ -23,10 +23,3 @@ function toggleDarkMode()
 
     hs.console.darkMode(isInDarkMode())
 end
-
--- Hyper-\ for toggling theme
-
-hs.hotkey.bind(hyperKeyDef, "\\", function()
-    toggleDarkMode()
-end)
-

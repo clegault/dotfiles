@@ -159,16 +159,16 @@ function workspaceReset()
     update()
 end
 
-for k,i in pairs({1,2,3,4,5,6,7,8,9,0}) do
-    spaceMap[i] = { }
+-- for k,i in pairs({1,2,3,4,5,6,7,8,9,0}) do
+--     spaceMap[i] = { }
 
-    hs.hotkey.bind({"alt"}, tostring(i), function()
-        switchToSpace(i)
-    end)
-    hs.hotkey.bind({"alt", "shift"}, tostring(i), function()
-        moveWindowToSpace(hs.window.frontmostWindow(), i)
-    end)
-end
+--     hs.hotkey.bind({"alt"}, tostring(i), function()
+--         switchToSpace(i)
+--     end)
+--     hs.hotkey.bind({"alt", "shift"}, tostring(i), function()
+--         moveWindowToSpace(hs.window.frontmostWindow(), i)
+--     end)
+-- end
 
 workspaceWindowFilter = hs.window.filter.copy(hs.window.filter.default)
 :rejectApp('Hammerspoon')

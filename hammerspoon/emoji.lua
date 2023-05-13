@@ -19,16 +19,14 @@ for _, emoji in ipairs(decoded) do
     })
 end
 
-hs.hotkey.bind(hyperKeyDef, "e", function()
+function startEmojiPicker ()
     local chooser = hs.chooser.new(function(picked)
         if not picked then return end
         hs.pasteboard.setContents(picked["characters"])
     end)
-
     chooser:width(20)
-
     chooser:choices(choices)
     chooser:searchSubText(true)
-
     chooser:show()
-end)
+end
+
