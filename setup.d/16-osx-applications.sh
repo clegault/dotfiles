@@ -32,6 +32,7 @@ apps=('1password'
     'rancher'
     'hammerspoon'
     'karabiner-elements'
+    'yqrashawn/goku/goku'
 )
 
 intelonlyapps=(
