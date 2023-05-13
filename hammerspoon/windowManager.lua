@@ -43,16 +43,16 @@ end
 
 local layoutConfig = {
 
---   _before_ = (function()
---     hide('com.spotify.client')
---   end),
+  _before_ = (function()
+    -- hide('com.spotify.client')
+  end),
 
---   _after_ = (function()
---     -- Make sure Textual appears in front of Skype, and iTerm in front of
---     -- others.
---     activate('com.codeux.irc.textual5')
---     activate('com.googlecode.iterm2')
---   end),
+  _after_ = (function()
+    -- Make sure Textual appears in front of Skype, and iTerm in front of
+    -- others.
+    -- activate('com.codeux.irc.textual5')
+    -- activate('com.googlecode.iterm2')
+  end),
 
 --   ['com.freron.MailMate'] = (function(window, forceScreenCount)
 --     local count = forceScreenCount or screenCount
@@ -100,6 +100,18 @@ local layoutConfig = {
   end),
 
   -- ['com.microsoft.teams'] = (function(window)
+  --   local teamsWindow = hs.window.find("| Microsoft Teams")
+  --   teamsWindow:focus()
+  --   local screen = hs.window.focusedWindow():screen()
+  --   if screen:id() == hs.screen.primaryScreen():id() then
+  --     hs.eventtap.keyStroke({"alt", "ctrl", "cmd"}, "t")
+  --     hs.eventtap.keyStroke({"ctrl", "cmd"}, "f")
+  --   elseif not teamsWindow:isFullScreen() then
+  --     -- hs.grid.set(window, grid.bottomHalf, externalDisplay())
+  --     hs.eventtap.keyStroke({"ctrl", "cmd"}, "f")
+  --     -- hs.eventtap.keyStroke({"alt", "ctrl"}, "n")
+  --   end
+  -- end),
   --   -- shiftSpace('com.tinyspeck.slackmacgap')
   --   dbg("shifting focus to teams")
   --   shiftSpace('com.microsoft.teams')

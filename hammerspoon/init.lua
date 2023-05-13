@@ -395,7 +395,6 @@ end
 
 function moveToNextScreen()
   local app = hs.window.focusedWindow()
-  dbg(app)
   app:moveToScreen(app:screen():next())
   hs.eventtap.keyStroke({"cmd", "ctrl"}, "f")
 end
