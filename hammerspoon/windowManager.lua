@@ -7,6 +7,7 @@ local screenGeometries = hs.fnutils.map(hs.screen.allScreens(), function(screen)
 end)
 local logLevel = 'debug' -- generally want 'debug' or 'info'
 local log = hs.logger.new('wincent', logLevel)
+local messagesActive = false
 
 local grid = {
   topHalf = '0,0 12x2',
@@ -84,8 +85,13 @@ local layoutConfig = {
   end),
 
   ['com.apple.MobileSMS'] = (function(window)
-    hs.grid.set(window, grid.bottomHalf, externalDisplay())
-    hs.eventtap.keyStroke({"cmd", "ctrl", "shift", "alt"}, "f")
+    hs.application.launchOrFocus("Messages")
+    if messagesActive then
+      messagesActive = false
+    else
+      messagesActive = true
+      hs.eventtap.keyStroke({"ctrl", "alt"}, "n")
+    end
   end),
 
   ['com.apple.Music'] = (function(window)
@@ -116,13 +122,29 @@ local layoutConfig = {
   --   end
   -- end),
 
---   ['com.tinyspeck.slackmacgap'] = (function(window)
---     hs.grid.set(window, grid.bottomHalf, externalDisplay())
---   end),
+  ['com.tinyspeck.slackmacgap'] = (function(window)
+    local slackWindow = hs.window.find("Slack")
+    slackWindow:focus()
+    if not slackWindow:isFullScreen() then
+      hs.grid.set(window, grid.bottomHalf, externalDisplay())
+      hs.eventtap.keyStroke({"cmd", "ctrl"}, "f")
+    end
+  end),
 
--- ['com.hnc.Discord'] = (function(window)
---     hs.grid.set(window, grid.topHalf, externalDisplay())
--- end),
+['com.hnc.Discord'] = (function(window)
+  --  find discord windows
+    local discordWindow = hs.window.find("Discord")
+    -- get only the one that is not the Updater window
+    if discordWindow and not string.match(discordWindow:title(), "Updater") then
+      -- set focus to the main window
+      discordWindow:focus()
+      -- check if it's full screen already, if it is not, go to full screen
+      if not discordWindow:isFullScreen() then
+        hs.grid.set(window, grid.topHalf, externalDisplay())
+        hs.eventtap.keyStroke({"cmd", "ctrl"}, "f")
+      end
+    end
+end),
 }
 
 
@@ -167,12 +189,12 @@ function isMailMateMailViewer(window)
 end
 
 function externalDisplay()
-  dbg(hs.screen'Dell')
+  -- dbg(hs.screen'Dell')
   return hs.screen'Dell'
 end
 
 function primaryDisplay()
-  dbg(hs.screen.primaryScreen())
+  -- dbg(hs.screen.primaryScreen())
   return hs.screen.primaryScreen()
 end
 
@@ -222,7 +244,7 @@ function handleAppEvent(element, event)
     if pcall(function()
       log.df('[event] window %s created', element:id())
       local win = hs.window.focusedWindow()
-      dbg(win)
+      -- dbg(win)
     end) then
       watchWindow(element)
     else
@@ -404,54 +426,54 @@ end
 -- Key bindings.
 --
 
-hs.hotkey.bind({'ctrl', 'alt'}, 'up', chain({
-  grid.topHalf,
-  grid.topThird,
-  grid.topTwoThirds,
-}))
+-- hs.hotkey.bind({'ctrl', 'alt'}, 'up', chain({
+--   grid.topHalf,
+--   grid.topThird,
+--   grid.topTwoThirds,
+-- }))
 
-hs.hotkey.bind({'ctrl', 'alt'}, 'right', chain({
-  grid.rightHalf,
-  grid.rightThird,
-  grid.rightTwoThirds,
-}))
+-- hs.hotkey.bind({'ctrl', 'alt'}, 'right', chain({
+--   grid.rightHalf,
+--   grid.rightThird,
+--   grid.rightTwoThirds,
+-- }))
 
-hs.hotkey.bind({'ctrl', 'alt'}, 'down', chain({
-  grid.bottomHalf,
-  grid.bottomThird,
-  grid.bottomTwoThirds,
-}))
+-- hs.hotkey.bind({'ctrl', 'alt'}, 'down', chain({
+--   grid.bottomHalf,
+--   grid.bottomThird,
+--   grid.bottomTwoThirds,
+-- }))
 
-hs.hotkey.bind({'ctrl', 'alt'}, 'left', chain({
-  grid.leftHalf,
-  grid.leftThird,
-  grid.leftTwoThirds,
-}))
+-- hs.hotkey.bind({'ctrl', 'alt'}, 'left', chain({
+--   grid.leftHalf,
+--   grid.leftThird,
+--   grid.leftTwoThirds,
+-- }))
 
-hs.hotkey.bind({'ctrl', 'alt', 'cmd'}, 'up', chain({
-  grid.topLeft,
-  grid.topRight,
-  grid.bottomRight,
-  grid.bottomLeft,
-}))
+-- hs.hotkey.bind({'ctrl', 'alt', 'cmd'}, 'up', chain({
+--   grid.topLeft,
+--   grid.topRight,
+--   grid.bottomRight,
+--   grid.bottomLeft,
+-- }))
 
-hs.hotkey.bind({'ctrl', 'alt', 'cmd'}, 'down', chain({
-  grid.fullScreen,
-  grid.centeredBig,
-  grid.centeredSmall,
-}))
+-- hs.hotkey.bind({'ctrl', 'alt', 'cmd'}, 'down', chain({
+--   grid.fullScreen,
+--   grid.centeredBig,
+--   grid.centeredSmall,
+-- }))
 
-hs.hotkey.bind({'ctrl', 'alt', 'cmd'}, 'f1', (function()
-  hs.alert('One-monitor layout')
-  activateLayout(1)
-end))
+-- hs.hotkey.bind({'ctrl', 'alt', 'cmd'}, 'f1', (function()
+--   hs.alert('One-monitor layout')
+--   activateLayout(1)
+-- end))
 
-hs.hotkey.bind({'ctrl', 'alt', 'cmd'}, 'f2', (function()
-  hs.alert('Two-monitor layout')
-  activateLayout(2)
-end))
+-- hs.hotkey.bind({'ctrl', 'alt', 'cmd'}, 'f2', (function()
+--   hs.alert('Two-monitor layout')
+--   activateLayout(2)
+-- end))
 
-hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "F11", function()
-  local win = hs.window.focusedWindow()
-  dbg(win)
-end)
+-- hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "F11", function()
+--   local win = hs.window.focusedWindow()
+--   dbg(win)
+-- end)
