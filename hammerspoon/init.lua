@@ -6,7 +6,7 @@ hs.console.clearConsole()
 -- Start profiling
 require("profile")
 
-hs.alert.show("hs...")
+hs.alert.show("hammerspoon starting...")
 
 profileStart('imports')
 profileStart('configTotal')
@@ -14,28 +14,27 @@ profileStart('configTotal')
 require("hs.ipc")
 hs.ipc.cliInstall()
 
-require "hyperKeyDef"
-require "vim_movement"
-require "app_shortcuts"
+require "hotkeys"
 require "preferred_screen"
-require "volume_control"
 require "brightness_control"
 require "grid"
 require "darkmode"
--- require "audio_output"
-require "choose"
-require "pass"
--- require "streamdeck"
-require "link_replace"
-require "pinboard"
-require "youtubedl"
-require "vimwiki.picker"
 require "server"
--- require "window_tweaks"
-require "itunes_albumart"
--- require "flux"
 require "windowManager"
 require "ElgatoKeyControll"
+require "choose"
+require "emoji"
+require "util"
+-- require "itunes_albumart"
+-- require "link_replace"
+-- require "vimwiki.picker"
+-- require "pinboard"
+-- require "youtubedl"
+-- require "volume_control"
+-- require "streamdeck"
+-- require "window_tweaks"
+-- require "flux"
+-- require "audio_output"
 
 profileStop('imports')
 profileStart('globals')
@@ -342,7 +341,8 @@ profileStart('noises')
 -- Noises {{{
 -- Just playing for now with this config:
 -- https://github.com/trishume/dotfiles/blob/master/hammerspoon/hammerspoon.symlink/init.lua
--- This stuff is wild, and it works!
+-- sssss to scroll down the whole time you are making the sound
+-- POP with your lips to scroll down a little at a time with each POP
 listener = nil
 popclickListening = false
 local scrollDownTimer = nil
@@ -390,11 +390,12 @@ function handleScreenEvent()
     -- updateFluxiness()
 end
 
-screenWatcher = hs.screen.watcher.new(handleScreenEvent)
-screenWatcher:start()
+-- screenWatcher = hs.screen.watcher.new(handleScreenEvent)
+-- screenWatcher:start()
 
 function moveToNextScreen()
   local app = hs.window.focusedWindow()
+  dbg(app)
   app:moveToScreen(app:screen():next())
   hs.eventtap.keyStroke({"cmd", "ctrl"}, "f")
 end
@@ -500,25 +501,13 @@ profileStop('screenChanges')
 -- caffeinateWatcher:start()
 -- -- }}}
 -- profileStop('caffeinate')
-profileStart('pasteboard')
--- {{{ Pasteboard
-pasteboardWatcher = hs.pasteboard.watcher.new(function(contents)
-    replacePasteboardLinkIfNecessary(contents)
-end)
--- }}}
-profileStop('pasteboard')
-profileStart('reloading')
--- Reloading {{{
--- I can reload the config when this file changes. From:
--- http://www.hammerspoon.org/go/#fancyreload
-function reload_config(files)
-    hs.reload()
-end
-
-hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reload_config):start()
-
--- }}}
-profileStop('reloading')
+-- profileStart('pasteboard')
+-- -- {{{ Pasteboard
+-- pasteboardWatcher = hs.pasteboard.watcher.new(function(contents)
+--     replacePasteboardLinkIfNecessary(contents)
+-- end)
+-- -- }}}
+-- profileStop('pasteboard')
 
 -- {{ Bootstrapping
 
@@ -526,7 +515,7 @@ profileStop('reloading')
 -- updateFluxiness()
 -- }}}
 
-hs.alert.show("hs ready!")
+hs.alert.show("Hammerspoon, at your service.")
 
 profileStop('configTotal')
 

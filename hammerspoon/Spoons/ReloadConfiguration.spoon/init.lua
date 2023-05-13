@@ -40,8 +40,14 @@ end
 ---  * None
 function obj:start()
     self.watchers = {}
-    for _,dir in pairs(self.watch_paths) do
-        self.watchers[dir] = hs.pathwatcher.new(dir, hs.reload):start()
+    for _, dir in ipairs(self.watch_paths) do
+        self.watchers[dir] = hs.pathwatcher.new(dir, function(paths, flags)
+        -- Print the paths and flags to the console
+        print("Paths:", hs.inspect(paths))
+        print("Flags:", hs.inspect(flags))
+        -- If there is trouble and you need to debug, comment out the next line to stop the reload
+        hs.reload()
+        end):start()
     end
     return self
 end
