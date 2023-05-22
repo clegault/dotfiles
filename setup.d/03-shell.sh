@@ -23,7 +23,7 @@ echo "Installing current oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 # install the zsh plugins for oh-my-zsh
-git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -34,8 +34,9 @@ ln -sf ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting-filetypes/zsh-syntax-
 
 # After we have installed zsh, create a link to our zshrc.
 echo "$os: setting ~/.zshrc link..."
-rm ~/.zshrc
-ln -sf ${PWD}/zsh/zshrc ~/.zshrc
+rm $HOME/.zshrc $HOME/.p10k.zsh
+cp "${pwd}/zsh/zshrc" "$HOME/.zshrc"
+cp "${pwd}/zsh/p10k.zsh" "$HOME/.p10k.zsh"
 
 # Move to zsh.
 echo "$os: checking shell..."

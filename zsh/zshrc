@@ -9,7 +9,7 @@ export ZSH=~/.oh-my-zsh
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="gallifrey"
 #ZSH_THEME="spaceship"
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
 # cause zsh load theme from this variable instead of
@@ -70,46 +70,46 @@ plugins=(grc git  git-extras gem bundler macos ruby rvm rails sudo sublime color
 export DEFAULT_USER='clegault'
 TERM=xterm-256color
 
-POWERLEVEL9K_MODE='awesome-fontconfig'
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
-POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_beginning"
-POWERLEVEL9K_RVM_BACKGROUND="black"
-POWERLEVEL9K_RVM_FOREGROUND="249"
-POWERLEVEL9K_RVM_VISUAL_IDENTIFIER_COLOR="red"
-POWERLEVEL9K_TIME_BACKGROUND="black"
-POWERLEVEL9K_TIME_FOREGROUND="249"
-POWERLEVEL9K_TIME_FORMAT="\UF43A %D{%H:%M  \UF133  %d.%m.%y}"
-POWERLEVEL9K_RVM_BACKGROUND="black"
-POWERLEVEL9K_RVM_FOREGROUND="249"
-POWERLEVEL9K_RVM_VISUAL_IDENTIFIER_COLOR="red"
-POWERLEVEL9K_STATUS_VERBOSE=false
-POWERLEVEL9K_VCS_CLEAN_FOREGROUND='black'
-POWERLEVEL9K_VCS_CLEAN_BACKGROUND='green'
-POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='black'
-POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='yellow'
-POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='white'
-POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='black'
-POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND='black'
-POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND='blue'
-POWERLEVEL9K_FOLDER_ICON=''
-POWERLEVEL9K_STATUS_OK_IN_NON_VERBOSE=true
-POWERLEVEL9K_STATUS_VERBOSE=false
-POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=0
-POWERLEVEL9K_VCS_UNTRACKED_ICON='\u25CF'
-POWERLEVEL9K_VCS_UNSTAGED_ICON='\u00b1'
-POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON='\u2193'
-POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON='\u2191'
-POWERLEVEL9K_VCS_COMMIT_ICON="\uf417"
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%F{blue}\u256D\u2500%F{white}"
-POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="%F{blue}\u2570\uf460%F{white} "
-POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_FOREGROUND="015"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context os_icon ssh root_indicator dir dir_writable vcs)
-case "$OSTYPE" in
-  darwin*)
-    prompt_zsh_showStatus () {
+#POWERLEVEL9K_MODE='awesome-fontconfig'
+#POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+#POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+#POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
+#POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+#POWERLEVEL9K_SHORTEN_STRATEGY="truncate_beginning"
+#POWERLEVEL9K_RVM_BACKGROUND="black"
+#POWERLEVEL9K_RVM_FOREGROUND="249"
+#POWERLEVEL9K_RVM_VISUAL_IDENTIFIER_COLOR="red"
+#POWERLEVEL9K_TIME_BACKGROUND="black"
+#POWERLEVEL9K_TIME_FOREGROUND="249"
+#POWERLEVEL9K_TIME_FORMAT="\UF43A %D{%H:%M  \UF133  %d.%m.%y}"
+#POWERLEVEL9K_RVM_BACKGROUND="black"
+#POWERLEVEL9K_RVM_FOREGROUND="249"
+#POWERLEVEL9K_RVM_VISUAL_IDENTIFIER_COLOR="red"
+#POWERLEVEL9K_STATUS_VERBOSE=false
+#POWERLEVEL9K_VCS_CLEAN_FOREGROUND='black'
+#POWERLEVEL9K_VCS_CLEAN_BACKGROUND='green'
+#POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='black'
+#POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='yellow'
+#POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='white'
+#POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='black'
+#POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND='black'
+#POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND='blue'
+#POWERLEVEL9K_FOLDER_ICON='ï¼'
+#POWERLEVEL9K_STATUS_OK_IN_NON_VERBOSE=true
+#POWERLEVEL9K_STATUS_VERBOSE=false
+#POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=0
+#POWERLEVEL9K_VCS_UNTRACKED_ICON='\u25CF'
+#POWERLEVEL9K_VCS_UNSTAGED_ICON='\u00b1'
+#POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON='\u2193'
+#POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON='\u2191'
+#POWERLEVEL9K_VCS_COMMIT_ICON="\uf417"
+#POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%F{blue}\u256D\u2500%F{white}"
+#POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="%F{blue}\u2570\uf460%F{white} "
+#POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_FOREGROUND="015"
+#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context os_icon ssh root_indicator dir dir_writable vcs)
+#case "$OSTYPE" in
+#  darwin*)
+#    prompt_zsh_showStatus () {
         #musicapp=`osascript -e $'if application "Music" is running then\nreturn "running"\nelse\nreturn "nop"\nend if'`;
         #spotifyapp=`osascript -e $'if application "Spotify" is running then\nreturn "running"\nelse\nreturn "nop"\nend if'`;
         #sonosapp=`python3 ~/Desktop/sonos.py -p Den -c getstate`;
@@ -118,14 +118,14 @@ case "$OSTYPE" in
         #  if [ $state = "playing" ]; then
         #    artist=`osascript -e $'tell application "Music"\nget artist of current track as string\nend tell'`;
         #    track=`osascript -e $'tell application "Music"\nget name of current track as string\nend tell'`;
-        #    echo -n "♫ $artist - $track";
+        #    echo -n "â« $artist - $track";
         #  fi
         #elif [ $spotifyapp = "running" ]; then
         #  state=`osascript -e $'tell application "Spotify"\nget player state as string\nend tell'`;
         #  if [ $state = "playing" ]; then
         #    artist=`osascript -e $'tell application "Spotify"\nget artist of current track as string\nend tell'`;
         #    track=`osascript -e $'tell application "Spotify"\nget name of current track as string\nend tell'`;
-        #    echo -n "♫ $artist - $track";
+        #    echo -n "â« $artist - $track";
         #  fi
         #elif [ $sonosapp = "running" ]; then
         #  state=`python3 ~/Desktop/sonos.py -p Den -c getsong`;
@@ -133,13 +133,13 @@ case "$OSTYPE" in
         #else
         #  echo -n "No Music"
         #fi
-    }
-    POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status zsh_showStatus)
-  ;;
-  linux*)
-    POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time  status rvm time)
-  ;;
-esac
+#    }
+    #POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status zsh_showStatus)
+  #;;
+  #linux*)
+    #POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time  status rvm time)
+  #;;
+#esac
 
 #
 # User configuration
@@ -251,3 +251,5 @@ complete -o nospace -C /opt/homebrew/bin/terraform terraform
 if [[ -f "~/.config/op/plugins.sh" ]]; then
   source ~/.config/op/plugins.sh
 fi
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
