@@ -64,19 +64,19 @@ pasteboardWatcher = nil
 profileStop('globals')
 -- Finding all running GUI apps {{{
 
-function allRunningApps()
-    local allApps = hs.application.runningApplications()
-    local allRunningApps = {}
+-- function allRunningApps()
+--     local allApps = hs.application.runningApplications()
+--     local allRunningApps = {}
 
-    for idx,app in pairs(allApps) do
-        -- Ignore Hammerspoon
-        if app:mainWindow() ~= nil and app:title() ~= "Hammerspoon" then
-            table.insert(allRunningApps, app)
-        end
-    end
+--     for idx,app in pairs(allApps) do
+--         -- Ignore Hammerspoon
+--         if app:mainWindow() ~= nil and app:title() ~= "Hammerspoon" then
+--             table.insert(allRunningApps, app)
+--         end
+--     end
 
-    return allRunningApps
-end
+--     return allRunningApps
+-- end
 
 -- }}}
 -- Notifying {{{
@@ -143,200 +143,200 @@ end)
 
 -- }}}
 
-profileStart('windowCommands')
--- Window Geometry {{{
+-- profileStart('windowCommands')
+-- -- Window Geometry {{{
 
-function windowPaddingForScreen (screen)
-    return 0
-end
-
--- }}}
--- Window Sanitizing {{{
-
-function sanitizeWindowPosition (window, frame)
-    local windowScreen = window:screen()
-    local windowPadding = windowPaddingForScreen(windowScreen)
-
-    local screenFrame = windowScreen:frame()
-
-    local minimumWindowX = screenFrame.x + windowPadding
-    local minimumWindowY = screenFrame.y + windowPadding
-
-    local maximumWindowX = (screenFrame.x + screenFrame.w) - (frame.w + windowPadding)
-    local maximumWindowY = (screenFrame.y + screenFrame.h) - (frame.h + windowPadding)
-
-    frame.x = math.max(frame.x, minimumWindowX)
-    frame.y = math.max(frame.y, minimumWindowY)
-
-    frame.x = math.min(frame.x, maximumWindowX)
-    frame.y = math.min(frame.y, maximumWindowY)
-
-    return frame
-end
-
-function sanitizeWindowSize (window, frame)
-    local windowScreen = window:screen()
-    local windowPadding = windowPaddingForScreen(windowScreen)
-
-    local screenFrame = windowScreen:frame()
-
-    local maximumWidth = screenFrame.w - (2 * windowPadding)
-    local maximumHeight = screenFrame.h - (2 * windowPadding)
-
-    frame.w = math.min(frame.w, maximumWidth)
-    frame.h = math.min(frame.h, maximumHeight)
-
-    return frame
-end
-
-function sanitizeWindowFrame (window, frame)
-    frame = sanitizeWindowSize(window, frame)
-    frame = sanitizeWindowPosition(window, frame)
-
-    return frame
-end
-
--- }}}
--- Window Movement {{{
-
-function moveWindowInDirection (window,direction)
-    local newWindowFrame = window:frame()
-    oldWindowPosition = hs.geometry.point(newWindowFrame.x, newWindowFrame.y)
-
-    local padding = windowPaddingForScreen(window:screen())
-    local screen = window:screen()
-    local screenFrame = screen:frame()
-
-    newWindowFrame.x = newWindowFrame.x + (direction.w * screenFrame.w / 10)
-    newWindowFrame.y = newWindowFrame.y + (direction.h * screenFrame.h / 4)
-
-    if newWindowFrame.x ~= oldWindowPosition.x then newWindowFrame.x = newWindowFrame.x + padding * direction.w end
-    if newWindowFrame.y ~= oldWindowPosition.y then newWindowFrame.y = newWindowFrame.y + padding * direction.h end
-
-    newWindowFrame = sanitizeWindowFrame(window, newWindowFrame)
-
-    window:setFrame(newWindowFrame)
-end
-
-function moveForegroundWindowInDirection (direction)
-    local window = hs.window.focusedWindow()
-    if window == nil then return end
-    moveWindowInDirection(window, direction)
-end
-
--- }}}
--- Window Resizing {{{
-
-function amountToResizeForWindow (window, amount, horizontal)
-    local screen = window:screen()
-    local screenFrame = screen:frame()
-
-    if horizontal == true then minimumWindowDimension = screenFrame.w / 10 end
-    if not horizontal then minimumWindowDimension = screenFrame.h / 4 end
-
-    if amount == 1 then amount = minimumWindowDimension end
-    if amount == -1 then amount = -1 * minimumWindowDimension end
-    if amount == 0 then amount = 0 end
-
-    return amount
-end
-
-function resizeWindowByAmount (window, amount)
-    local newWindowFrame = window:frame()
-
-    local amountW = amountToResizeForWindow(window, amount.w, true)
-    local amountH = amountToResizeForWindow(window, amount.h, false)
-
-    newWindowFrame.w = newWindowFrame.w + amountW
-    newWindowFrame.h = newWindowFrame.h + amountH
-
-    newWindowFrame = sanitizeWindowFrame(window, newWindowFrame)
-
-    window:setFrame(newWindowFrame)
-end
-
-function resizeForegroundWindowByAmount (amount)
-    local window = hs.window.focusedWindow()
-    if window == nil then return end
-    resizeWindowByAmount(window, amount)
-end
-
--- function moveWindowToDisplay(d)
---   return function()
---     local displays = hs.screen.allScreens()
---     local win = hs.window.focusedWindow()
---     win:moveToScreen(displays[d], false, true)
---   end
+-- function windowPaddingForScreen (screen)
+--     return 0
 -- end
 
--- hs.hotkey.bind({"ctrl", "alt", "cmd"}, "1", moveWindowToDisplay(1))
--- hs.hotkey.bind({"ctrl", "alt", "cmd"}, "2", moveWindowToDisplay(2))
+-- -- }}}
+-- -- Window Sanitizing {{{
 
--- }}}
--- Window Movement Keys {{{
+-- function sanitizeWindowPosition (window, frame)
+--     local windowScreen = window:screen()
+--     local windowPadding = windowPaddingForScreen(windowScreen)
 
--- Bind hyper-H to move window to the left
-hs.hotkey.bind(hyperKeyDef, "h", function()
-    moveForegroundWindowInDirection(hs.geometry.size(-1,0))
-end)
+--     local screenFrame = windowScreen:frame()
 
--- Bind hyper-L to move window to the right
+--     local minimumWindowX = screenFrame.x + windowPadding
+--     local minimumWindowY = screenFrame.y + windowPadding
 
-hs.hotkey.bind(hyperKeyDef, "l", function()
-    moveForegroundWindowInDirection(hs.geometry.size(1,0))
-end)
+--     local maximumWindowX = (screenFrame.x + screenFrame.w) - (frame.w + windowPadding)
+--     local maximumWindowY = (screenFrame.y + screenFrame.h) - (frame.h + windowPadding)
 
--- Bind hyper-K to move window up
+--     frame.x = math.max(frame.x, minimumWindowX)
+--     frame.y = math.max(frame.y, minimumWindowY)
 
-hs.hotkey.bind(hyperKeyDef, "k", function()
-    moveForegroundWindowInDirection(hs.geometry.size(0,-1))
-end)
+--     frame.x = math.min(frame.x, maximumWindowX)
+--     frame.y = math.min(frame.y, maximumWindowY)
 
--- Bind hyper-J to move window down
+--     return frame
+-- end
 
-hs.hotkey.bind(hyperKeyDef, "j", function()
-    moveForegroundWindowInDirection(hs.geometry.size(0,1))
-end)
+-- function sanitizeWindowSize (window, frame)
+--     local windowScreen = window:screen()
+--     local windowPadding = windowPaddingForScreen(windowScreen)
 
--- Bind hyper-T to move window to the "next" screen
+--     local screenFrame = windowScreen:frame()
 
-hs.hotkey.bind(hyperKeyDef, "t", function()
-    local win = hs.window.focusedWindow()
-    local windowScreen = win:screen()
+--     local maximumWidth = screenFrame.w - (2 * windowPadding)
+--     local maximumHeight = screenFrame.h - (2 * windowPadding)
+
+--     frame.w = math.min(frame.w, maximumWidth)
+--     frame.h = math.min(frame.h, maximumHeight)
+
+--     return frame
+-- end
+
+-- function sanitizeWindowFrame (window, frame)
+--     frame = sanitizeWindowSize(window, frame)
+--     frame = sanitizeWindowPosition(window, frame)
+
+--     return frame
+-- end
+
+-- -- }}}
+-- -- Window Movement {{{
+
+-- function moveWindowInDirection (window,direction)
+--     local newWindowFrame = window:frame()
+--     oldWindowPosition = hs.geometry.point(newWindowFrame.x, newWindowFrame.y)
+
+--     local padding = windowPaddingForScreen(window:screen())
+--     local screen = window:screen()
+--     local screenFrame = screen:frame()
+
+--     newWindowFrame.x = newWindowFrame.x + (direction.w * screenFrame.w / 10)
+--     newWindowFrame.y = newWindowFrame.y + (direction.h * screenFrame.h / 4)
+
+--     if newWindowFrame.x ~= oldWindowPosition.x then newWindowFrame.x = newWindowFrame.x + padding * direction.w end
+--     if newWindowFrame.y ~= oldWindowPosition.y then newWindowFrame.y = newWindowFrame.y + padding * direction.h end
+
+--     newWindowFrame = sanitizeWindowFrame(window, newWindowFrame)
+
+--     window:setFrame(newWindowFrame)
+-- end
+
+-- function moveForegroundWindowInDirection (direction)
+--     local window = hs.window.focusedWindow()
+--     if window == nil then return end
+--     moveWindowInDirection(window, direction)
+-- end
+
+-- -- }}}
+-- -- Window Resizing {{{
+
+-- function amountToResizeForWindow (window, amount, horizontal)
+--     local screen = window:screen()
+--     local screenFrame = screen:frame()
+
+--     if horizontal == true then minimumWindowDimension = screenFrame.w / 10 end
+--     if not horizontal then minimumWindowDimension = screenFrame.h / 4 end
+
+--     if amount == 1 then amount = minimumWindowDimension end
+--     if amount == -1 then amount = -1 * minimumWindowDimension end
+--     if amount == 0 then amount = 0 end
+
+--     return amount
+-- end
+
+-- function resizeWindowByAmount (window, amount)
+--     local newWindowFrame = window:frame()
+
+--     local amountW = amountToResizeForWindow(window, amount.w, true)
+--     local amountH = amountToResizeForWindow(window, amount.h, false)
+
+--     newWindowFrame.w = newWindowFrame.w + amountW
+--     newWindowFrame.h = newWindowFrame.h + amountH
+
+--     newWindowFrame = sanitizeWindowFrame(window, newWindowFrame)
+
+--     window:setFrame(newWindowFrame)
+-- end
+
+-- function resizeForegroundWindowByAmount (amount)
+--     local window = hs.window.focusedWindow()
+--     if window == nil then return end
+--     resizeWindowByAmount(window, amount)
+-- end
+
+-- -- function moveWindowToDisplay(d)
+-- --   return function()
+-- --     local displays = hs.screen.allScreens()
+-- --     local win = hs.window.focusedWindow()
+-- --     win:moveToScreen(displays[d], false, true)
+-- --   end
+-- -- end
+
+-- -- hs.hotkey.bind({"ctrl", "alt", "cmd"}, "1", moveWindowToDisplay(1))
+-- -- hs.hotkey.bind({"ctrl", "alt", "cmd"}, "2", moveWindowToDisplay(2))
+
+-- -- }}}
+-- -- Window Movement Keys {{{
+
+-- -- Bind hyper-H to move window to the left
+-- hs.hotkey.bind(hyperKeyDef, "h", function()
+--     moveForegroundWindowInDirection(hs.geometry.size(-1,0))
+-- end)
+
+-- -- Bind hyper-L to move window to the right
+
+-- hs.hotkey.bind(hyperKeyDef, "l", function()
+--     moveForegroundWindowInDirection(hs.geometry.size(1,0))
+-- end)
+
+-- -- Bind hyper-K to move window up
+
+-- hs.hotkey.bind(hyperKeyDef, "k", function()
+--     moveForegroundWindowInDirection(hs.geometry.size(0,-1))
+-- end)
+
+-- -- Bind hyper-J to move window down
+
+-- hs.hotkey.bind(hyperKeyDef, "j", function()
+--     moveForegroundWindowInDirection(hs.geometry.size(0,1))
+-- end)
+
+-- -- Bind hyper-T to move window to the "next" screen
+
+-- hs.hotkey.bind(hyperKeyDef, "t", function()
+--     local win = hs.window.focusedWindow()
+--     local windowScreen = win:screen()
     
-    local newWindowScreen = windowScreen:next()
-    win:moveToScreen(newWindowScreen)
-end)
+--     local newWindowScreen = windowScreen:next()
+--     win:moveToScreen(newWindowScreen)
+-- end)
+
+-- -- }}}
+-- -- Window Resizing Keys {{{
+
+-- -- Bind hyper-Y to resize window width smaller
+
+-- hs.hotkey.bind(hyperKeyDef, "Y", function()
+--     resizeForegroundWindowByAmount(hs.geometry.size(-1, 0))
+-- end)
+
+-- -- Bind hyper-O to resize window width larger
+
+-- hs.hotkey.bind(hyperKeyDef, "O", function()
+--     resizeForegroundWindowByAmount(hs.geometry.size(1, 0))
+-- end)
+
+-- -- Bind hyper-I to resize window height larger
+
+-- hs.hotkey.bind(hyperKeyDef, "I", function()
+--     resizeForegroundWindowByAmount(hs.geometry.size(0, 1))
+-- end)
+
+-- -- Bind hyper-U to resize window height smaller
+
+-- hs.hotkey.bind(hyperKeyDef, "U", function()
+--     resizeForegroundWindowByAmount(hs.geometry.size(0, -1))
+-- end)
 
 -- }}}
--- Window Resizing Keys {{{
-
--- Bind hyper-Y to resize window width smaller
-
-hs.hotkey.bind(hyperKeyDef, "Y", function()
-    resizeForegroundWindowByAmount(hs.geometry.size(-1, 0))
-end)
-
--- Bind hyper-O to resize window width larger
-
-hs.hotkey.bind(hyperKeyDef, "O", function()
-    resizeForegroundWindowByAmount(hs.geometry.size(1, 0))
-end)
-
--- Bind hyper-I to resize window height larger
-
-hs.hotkey.bind(hyperKeyDef, "I", function()
-    resizeForegroundWindowByAmount(hs.geometry.size(0, 1))
-end)
-
--- Bind hyper-U to resize window height smaller
-
-hs.hotkey.bind(hyperKeyDef, "U", function()
-    resizeForegroundWindowByAmount(hs.geometry.size(0, -1))
-end)
-
--- }}}
-profileStop('windowCommands')
+-- profileStop('windowCommands')
 profileStart('noises')
 -- Noises {{{
 -- Just playing for now with this config:
@@ -385,21 +385,21 @@ profileStart('screenChanges')
 --- Watch screen change notifications, and reload certain components when the
 --screen configuration changes
 
-function handleScreenEvent()
-    updateGridsForScreens()
-    -- updateFluxiness()
-end
+-- function handleScreenEvent()
+--     updateGridsForScreens()
+--     -- updateFluxiness()
+-- end
 
 -- screenWatcher = hs.screen.watcher.new(handleScreenEvent)
 -- screenWatcher:start()
 
-function moveToNextScreen()
-  local app = hs.window.focusedWindow()
-  app:moveToScreen(app:screen():next())
-  hs.eventtap.keyStroke({"cmd", "ctrl"}, "f")
-end
+-- function moveToNextScreen()
+--   local app = hs.window.focusedWindow()
+--   app:moveToScreen(app:screen():next())
+--   hs.eventtap.keyStroke({"cmd", "ctrl"}, "f")
+-- end
 
-hs.hotkey.bind({"ctrl", "alt"}, "n", moveToNextScreen)
+-- hs.hotkey.bind({"ctrl", "alt"}, "n", moveToNextScreen)
 
 -- }}}
 

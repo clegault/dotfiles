@@ -90,14 +90,14 @@ local layoutConfig = {
       hs.eventtap.keyStroke({"cmd", "ctrl"}, "f")
     end
   end),
-    ['com.tinyspeck.slackmacgap'] = (function(window)
-    local slackWindow = hs.window.find("Slack")
-    slackWindow:focus()
-    if not slackWindow:isFullScreen() then
-      hs.grid.set(window, grid.bottomHalf, externalDisplay())
-      hs.eventtap.keyStroke({"cmd", "ctrl"}, "f")
-    end
-  end),
+  --   ['com.tinyspeck.slackmacgap'] = (function(window)
+  --   local slackWindow = hs.window.find("Slack")
+  --   slackWindow:focus()
+  --   if not slackWindow:isFullScreen() then
+  --     hs.grid.set(window, grid.bottomHalf, externalDisplay())
+  --     hs.eventtap.keyStroke({"cmd", "ctrl"}, "f")
+  --   end
+  -- end),
 
 ['com.hnc.Discord'] = (function(window)
   --  find discord windows
