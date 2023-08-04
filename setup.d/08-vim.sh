@@ -14,8 +14,7 @@ elif [[ "$os" == "debianContainer" ]]; then
     apt install vim -y
 elif [[ "$os" == "ubuntu" ]]; then
     echo "$os: Installing vim full version for ubuntu..."
-    sudo apt-get install vim-gui-common
-    sudo apt-get install vim-runtime
+    apt-get install -y vim-gui-common vim-runtime
 fi
 
 # Note: I no longer use Vundle, having migrated to Vim-Plug. However, if you
