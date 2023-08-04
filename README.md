@@ -63,7 +63,7 @@ If you are on an M1 Mac, Rosetta will be installed automatically. You will run i
 xcode-select --install
 
 # Ubuntu only - install command line make tools.
-apt install make -y
+apt install make curl -y
 # Create a working environment, in my standard format.
 ```
 
