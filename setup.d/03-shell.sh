@@ -23,7 +23,6 @@ echo "Installing current oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 # install the zsh plugins for oh-my-zsh
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -31,12 +30,16 @@ git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM
 git clone https://github.com/unixorn/warhol.plugin.zsh.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/warhol
 git clone https://github.com/trapd00r/zsh-syntax-highlighting-filetypes.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting-filetypes
 ln -sf ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting-filetypes/zsh-syntax-highlighting-filetypes.zsh ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting-filetypes/zsh-syntax-highlighting-filetypes.plugin.zsh
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
 # After we have installed zsh, create a link to our zshrc.
 echo "$os: setting ~/.zshrc link..."
-rm $HOME/.zshrc $HOME/.p10k.zsh
-cp "${pwd}/zsh/zshrc" "$HOME/.zshrc"
-cp "${pwd}/zsh/p10k.zsh" "$HOME/.p10k.zsh"
+if [ -e ~/.zshrc ]; then
+    mv $HOME/.zshrc $HOME/.zshrc-pre-install
+    mv $HOME/.p10k.zsh $HOME/.p10k.zsh-pre-install
+fi
+cp $HOME/zsh/zshrc $HOME/.zshrc
+cp $HOME/zsh/p10k.zsh $HOME/.p10k.zsh
 
 # Move to zsh.
 echo "$os: checking shell..."
