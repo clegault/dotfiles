@@ -186,17 +186,10 @@ fi
 # SPACESHIP_PROMPT_FIRST_PREFIX_SHOW="true"
 # SPACESHIP_USER_SHOW="true"
 ENABLE_CORRECTION="false"
-#  if colorls_loc="$(type -p "colorls")" || [[ -z $colorls_loc ]]; then
-  #  alias ls='colorls --dark --sort-dirs --report'
- #   alias lc='colorls --tree --dark'
- #   DISABLE_LS_COLORS="true"  
-#  fi
-alias ls='eza --icons=always -x --group-directories-first'
-DISABLE_LS_COLORS="true"
+
 alias zdocker='docker exec -it -w /workspaces/${PWD##*/} --env-file="${PWD}/.devcontainer/container.env" $(docker ps --filter "name=${PWD##*/}" --format "{{.ID}}") zsh'
 alias sdocker='docker exec -it -w /workspaces/${PWD##*/} --env-file="${PWD}/.devcontainer/container.env" $(docker ps --filter "name=${PWD##*/}" --format "{{.ID}}") sh'
 export CLICOLOR=1
-export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 autoload -U compinit && compinit
 bindkey '\e[A' history-beginning-search-backward
 bindkey '\e[B' history-beginning-search-forward
@@ -247,7 +240,9 @@ complete -o nospace -C /opt/homebrew/bin/terraform terraform
 if [[ -f "~/.config/op/plugins.sh" ]]; then
   source ~/.config/op/plugins.sh
 fi
-
+unset -f ls
+DISABLE_LS_COLORS="true"
+alias ls='eza --icons=always -x --group-directories-first'
 export EZA_CONFIG_DIR=~/.eza-themes/eza
 if [[ "$(uname)" == "Darwin" ]]; then
     test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

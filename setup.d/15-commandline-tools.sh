@@ -47,7 +47,6 @@ if [[ "$os" == "osx" ]]; then
         brew install ${app}
     done
     $(brew --prefix)/opt/fzf/install -all
-    sudo gem install colorls
     pip3 install ntfy
 elif [[ "$os" == "ubuntu" ]]; then
     apps=('silversearcher-ag'
@@ -71,7 +70,6 @@ elif [[ "$os" == "ubuntu" ]]; then
         sudo apt install -y ${app}
     done
     sudo pip3 install thefuck
-    sudo gem install colorls
     mkdir /tmp/dotfiles
     cd /tmp/dotfiles
     curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"

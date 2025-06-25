@@ -47,9 +47,9 @@ if [[ "$os" == "alpine" ]] || [[ "$os" == "debianContainer" ]]; then
 elif [[ ! "$SHELL" =~ zsh$ ]]; then
     echo "Changing shell to zsh"
     if [[ $os == "ubuntu" ]]; then
-        sudo chsh -s `$(command echo which zsh)` $USER
+        chsh -s `$(command echo which zsh)` $USER
     else
-        sudo chsh -s "$(brew --prefix)/bin/zsh" $USER
+        chsh -s "$(brew --prefix)/bin/zsh" $USER
     fi
 fi
 
