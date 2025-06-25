@@ -256,7 +256,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
   alias cat=/opt/homebrew/bin/bat
   export GOROOT=/opt/homebrew/Cellar/go/1.24.4/libexec
 else
-  alias cat=/usr/bin/bat
+  alias cat=/usr/bin/batcat
 fi
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
