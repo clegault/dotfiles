@@ -35,6 +35,8 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 echo "$os: setting ~/.zshrc link..."
 if [ -e ~/.zshrc ]; then
     mv $HOME/.zshrc $HOME/.zshrc-pre-install
+fi
+if [ -e ~/.p10k.zsh ]; then
     mv $HOME/.p10k.zsh $HOME/.p10k.zsh-pre-install
 fi
 ensure_symlink "$(pwd)/zsh/zshrc" "$HOME/.zshrc"

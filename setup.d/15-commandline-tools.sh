@@ -84,8 +84,8 @@ elif [[ "$os" == "ubuntu" ]]; then
     cd -
     rm -rf /tmp/dotfiles
     ensure_symlink "$(pwd)/zsh/selected-editor" "$HOME/.selected-editor"
-    sed -i '/^[^#]/s/^/# /' /etc/update-motd.d/00-header
-    echo "exec /usr/bin/neofetch" >> /etc/update-motd.d/00-header
+    sudo sed -i '/^[^#]/s/^/# /' /etc/update-motd.d/00-header
+    sudo echo "exec /usr/bin/neofetch" >>/etc/update-motd.d/00-header
 else
     echo "Probably installing in a container, not installing extra tools. Stoping..."
 fi
