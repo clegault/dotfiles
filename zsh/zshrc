@@ -208,16 +208,10 @@ if [ -f "/usr/libexec/path_helper" ]; then
     eval $(/usr/libexec/path_helper -s)
 fi
 
-# Configure thefuck
-if [ -f '/opt/homebrew/bin/thefuck' ] || [ -f '/usr/local/bin/thefuck' ]; then eval $(thefuck --alias); fi
-
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/clegault/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/clegault/google-cloud-sdk/path.zsh.inc'; fi
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/clegault/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/clegault/google-cloud-sdk/completion.zsh.inc'; fi
-# The next line enables autojump profile 
-if [ -f /opt/homebrew/etc/profile.d/autojump.sh ]; then source '/opt/homebrew/etc/profile.d/autojump.sh'; fi
-if [ -f /usr/share/autojump/autojump.sh ]; then source '/usr/share/autojump/autojump.sh'; fi
 
 # ZSH auto-completion for kubernetes.
 if [ $commands[kubectl] ]; then
@@ -235,7 +229,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-complete -o nospace -C /opt/homebrew/bin/terraform terraform
 
 if [[ -f "~/.config/op/plugins.sh" ]]; then
   source ~/.config/op/plugins.sh
@@ -245,16 +238,25 @@ DISABLE_LS_COLORS="true"
 alias ls='eza --icons=always -x --group-directories-first'
 export EZA_CONFIG_DIR=~/.eza-themes/eza
 if [[ "$(uname)" == "Darwin" ]]; then
-    test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-    # Ensure "python3" command uses Homebrew's version
-    alias python3=/opt/homebrew/bin/python3
-    # OPTIONAL: Ensure "python" command uses Homebrew's version
-    alias python=/opt/homebrew/bin/python
-    # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-    alias pip3=/opt/homebrew/bin/pip3
-    alias pip=/opt/homebrew/bin/pip3
-    alias cat=/opt/homebrew/bin/bat
-    export GOROOT=/opt/homebrew/Cellar/go/1.24.4/libexec
+  # The next line enables autojump profile 
+  if [ -f /opt/homebrew/etc/profile.d/autojump.sh ]; then source '/opt/homebrew/etc/profile.d/autojump.sh'; fi
+  if [ -f /usr/share/autojump/autojump.sh ]; then source '/usr/share/autojump/autojump.sh'; fi
+  # Configure thefuck
+  if [ -f '/opt/homebrew/bin/thefuck' ] || [ -f '/usr/local/bin/thefuck' ]; then eval $(thefuck --alias); fi
+
+  complete -o nospace -C /opt/homebrew/bin/terraform terraform
+  test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+  # Ensure "python3" command uses Homebrew's version
+  alias python3=/opt/homebrew/bin/python3
+  # OPTIONAL: Ensure "python" command uses Homebrew's version
+  alias python=/opt/homebrew/bin/python
+  # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+  alias pip3=/opt/homebrew/bin/pip3
+  alias pip=/opt/homebrew/bin/pip3
+  alias cat=/opt/homebrew/bin/bat
+  export GOROOT=/opt/homebrew/Cellar/go/1.24.4/libexec
+else
+  alias cat=/usr/bin/bat
 fi
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
