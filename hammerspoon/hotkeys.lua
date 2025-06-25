@@ -1,23 +1,72 @@
 -- Hyper Key  {{{
+
 hs.loadSpoon("Hyper")
 hs.loadSpoon("Helpers")
- 
+
+-- Manually bind actions, preserving multi-level structure
+hyperBind("o", "open", "default")
+hyperBind("h", "navigate", "back")
+hyperBind("j", "navigate", "down")
+hyperBind("k", "navigate", "up")
+hyperBind("l", "navigate", "forward")
+hyperBind("p", "paste", "default")
+hyperBind("y", "copy", "default")
+hyperBind("i", "insert", "default")
+hyperBind("delete", "lock", "default")
+hyperBind(".", "execute", "default")
+
+-- Handle multi-level `windowSize` mappings
+hyperBind("8", "windowSize", "up")
+hyperBind("2", "windowSize", "down")
+hyperBind("4", "windowSize", "left")
+hyperBind("6", "windowSize", "right")
+hyperBind("5", "windowSize", "center")
+
+-- Application opening actions
+hyperBind("m", "open", "messages")
+hyperBind("`", "open", "console")
+hyperBind("tab", "open", "Kitty")
+hyperBind("s", "open", "slack")
+hyperBind("t", "open", "teams")
+hyperBind("w", "open", "arc")
+hyperBind("c", "open", "calendar")
+hyperBind("d", "open", "discord")
+
+-- Other actions
+hyperBind("f", "fullscreen", "default")
+hyperBind("n", "noises", "default")
+hyperBind("\\", "darkToggle", "default")
+
+-- Brightness control
+hyperBind("1", "changeBrightness", "down")
+hyperBind("2", "changeBrightness", "up")
+
+-- Grid toggle
+hyperBind("b", "gridToggle", "default")
+
+-- Emoji picker
+hyperBind("e", "emoji", "picker")
+
+-- Custom actions
+hyperBind("f1", "startWork", "default")
+hyperBind("0", "listDisplays", "default")
+
 slack = "com.tinyspeck.slackmacgap"
 discord = 'com.hnc.Discord'
 chrome = "com.vivaldi.Vivaldi"
 vscode = "com.microsoft.VSCode"
 arc = "company.thebrowser.Browser"
 
-hs.hotkey.bind({"cmd", "shift", "alt", "ctrl"}, "f", function()
-    _mouseOrigin = hs.mouse.absolutePosition()
-    local win = hs.window.focusedWindow()
-    _clickPoint = win:zoomButtonRect()
-    _clickPoint.x = _clickPoint.x + _clickPoint.w -5
-    _clickPoint.y = _clickPoint.y + (_clickPoint.h / 2)
-    hs.mouse.absolutePosition(_clickPoint)
-    hs.eventtap.leftClick(_clickPoint)
-    hs.mouse.absolutePosition(_mouseOrigin)
-end)
+-- hs.hotkey.bind({"cmd", "shift", "alt", "ctrl"}, "f", function()
+--     _mouseOrigin = hs.mouse.absolutePosition()
+--     local win = hs.window.focusedWindow()
+--     _clickPoint = win:zoomButtonRect()
+--     _clickPoint.x = _clickPoint.x + _clickPoint.w -5
+--     _clickPoint.y = _clickPoint.y + (_clickPoint.h / 2)
+--     hs.mouse.absolutePosition(_clickPoint)
+--     hs.eventtap.leftClick(_clickPoint)
+--     hs.mouse.absolutePosition(_mouseOrigin)
+-- end)
 
 hyper:app(slack)
     :action("open", {
@@ -31,6 +80,16 @@ hyper:app(slack)
     })
  
 hyper:app('fallback')
+    :action('startWork', {
+        default = function()
+            startWork()
+        end
+    })
+    :action('listDisplays', {
+        default = function()
+            listDisplays()
+        end
+    })
     :action('copy', {
         default = combo({'cmd'}, 'c'),
     })
@@ -66,7 +125,7 @@ hyper:app('fallback')
     })
     -- Hyper-f Make frontmost app fullscreen
     :action('fullscreen', {
-        default = combo({'cmd', 'option', 'control', 'shift'}, 'f'),
+        default = combo({'cmd', 'control'}, 'f'),
     })  
     -- Hyper-\ Toggle dark mode
     :action('darkToggle', {

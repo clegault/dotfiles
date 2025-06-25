@@ -29,8 +29,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
@@ -65,9 +63,9 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 #   zsh-syntax-highlighting
 # )
 
-plugins=(grc git  git-extras gem bundler macos ruby rvm rails sudo sublime colorize history history-substring-search last-working-dir compleat zsh-completions zsh-history-substring-search zsh-autosuggestions zsh-syntax-highlighting zsh-syntax-highlighting-filetypes warhol tmux)
+plugins=( git git-extras gem bundler macos ruby rvm rails sudo sublime colorize history history-substring-search last-working-dir compleat zsh-completions zsh-history-substring-search zsh-autosuggestions zsh-syntax-highlighting warhol )
 
-export DEFAULT_USER='clegault'
+export DEFAULT_USER=`whoami`
 TERM=xterm-256color
 
 #POWERLEVEL9K_MODE='awesome-fontconfig'
@@ -94,7 +92,7 @@ TERM=xterm-256color
 #POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='black'
 #POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND='black'
 #POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND='blue'
-#POWERLEVEL9K_FOLDER_ICON='ï¼'
+#POWERLEVEL9K_FOLDER_ICON='ï¼'
 #POWERLEVEL9K_STATUS_OK_IN_NON_VERBOSE=true
 #POWERLEVEL9K_STATUS_VERBOSE=false
 #POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=0
@@ -118,14 +116,14 @@ TERM=xterm-256color
         #  if [ $state = "playing" ]; then
         #    artist=`osascript -e $'tell application "Music"\nget artist of current track as string\nend tell'`;
         #    track=`osascript -e $'tell application "Music"\nget name of current track as string\nend tell'`;
-        #    echo -n "â« $artist - $track";
+        #    echo -n "â« $artist - $track";
         #  fi
         #elif [ $spotifyapp = "running" ]; then
         #  state=`osascript -e $'tell application "Spotify"\nget player state as string\nend tell'`;
         #  if [ $state = "playing" ]; then
         #    artist=`osascript -e $'tell application "Spotify"\nget artist of current track as string\nend tell'`;
         #    track=`osascript -e $'tell application "Spotify"\nget name of current track as string\nend tell'`;
-        #    echo -n "â« $artist - $track";
+        #    echo -n "â« $artist - $track";
         #  fi
         #elif [ $sonosapp = "running" ]; then
         #  state=`python3 ~/Desktop/sonos.py -p Den -c getsong`;
@@ -188,11 +186,13 @@ fi
 # SPACESHIP_PROMPT_FIRST_PREFIX_SHOW="true"
 # SPACESHIP_USER_SHOW="true"
 ENABLE_CORRECTION="false"
-if colorls_loc="$(type -p "colorls")" || [[ -z $colorls_loc ]]; then
-  alias ls='colorls --dark --sort-dirs --report'
-  alias lc='colorls --tree --dark'
-  DISABLE_LS_COLORS="true"  
-fi
+#  if colorls_loc="$(type -p "colorls")" || [[ -z $colorls_loc ]]; then
+  #  alias ls='colorls --dark --sort-dirs --report'
+ #   alias lc='colorls --tree --dark'
+ #   DISABLE_LS_COLORS="true"  
+#  fi
+alias ls='eza --icons=always -x --group-directories-first'
+DISABLE_LS_COLORS="true"
 alias zdocker='docker exec -it -w /workspaces/${PWD##*/} --env-file="${PWD}/.devcontainer/container.env" $(docker ps --filter "name=${PWD##*/}" --format "{{.ID}}") zsh'
 alias sdocker='docker exec -it -w /workspaces/${PWD##*/} --env-file="${PWD}/.devcontainer/container.env" $(docker ps --filter "name=${PWD##*/}" --format "{{.ID}}") sh'
 export CLICOLOR=1
@@ -201,7 +201,6 @@ autoload -U compinit && compinit
 bindkey '\e[A' history-beginning-search-backward
 bindkey '\e[B' history-beginning-search-forward
 HIST_STAMPS="mm/dd/yyyy"
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 if [[ "$(command -v tmux)" ]]; then
   if (( $EUID != 0 )); then
       ZSH_TMUX_AUTOSTART="true"
@@ -243,13 +242,24 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# The next line prints out a pretty logo at login
-if [ -f /usr/bin/neofetch ] || [ -f /opt/homebrew/bin/neofetch ]; then neofetch; fi
-
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
 
 if [[ -f "~/.config/op/plugins.sh" ]]; then
   source ~/.config/op/plugins.sh
 fi
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+
+export EZA_CONFIG_DIR=~/.eza-themes/eza
+if [[ "$(uname)" == "Darwin" ]]; then
+    test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+    # Ensure "python3" command uses Homebrew's version
+    alias python3=/opt/homebrew/bin/python3
+    # OPTIONAL: Ensure "python" command uses Homebrew's version
+    alias python=/opt/homebrew/bin/python
+    # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+    alias pip3=/opt/homebrew/bin/pip3
+    alias pip=/opt/homebrew/bin/pip3
+    alias cat=/opt/homebrew/bin/bat
+    export GOROOT=/opt/homebrew/Cellar/go/1.24.4/libexec
+fi
+
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

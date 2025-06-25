@@ -127,3 +127,27 @@ function stopTimer(timer)
     end
 end
 
+-- Lists all connected displays
+function listDisplays()
+    local screens = hs.screen.allScreens()
+    if #screens == 0 then
+        hs.alert.show("No external displays detected!")
+        return
+    end
+
+    local displayInfo = {}
+    for i, screen in ipairs(screens) do
+        local screenID = screen:id()
+        local screenName = screen:name() or "Unknown Display"
+        local resolution = screen:frame()
+        local primary = screen == hs.screen.primaryScreen() and " (Primary)" or ""
+
+        table.insert(displayInfo, string.format(
+            "Screen %d: %s%s\nID: %s\nResolution: %dx%d\n",
+            i, screenName, primary, screenID, resolution.w, resolution.h
+        ))
+    end
+
+    hs.alert.show(table.concat(displayInfo, "\n---\n"))
+    print(table.concat(displayInfo, "\n---\n")) -- Print to Hammerspoon Console
+end

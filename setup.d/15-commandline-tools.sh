@@ -35,6 +35,12 @@ if [[ "$os" == "osx" ]]; then
         'lukechilds/tap/gifgen'
         'neofetch'
         'thefuck'
+        'pv'
+        'eza'
+        'bat'
+        'watch'
+        'htop'
+        'git-who'
     )
     for app in ${apps[@]}; do
         echo "$os: Installing tool '${app}'"
@@ -56,6 +62,9 @@ elif [[ "$os" == "ubuntu" ]]; then
         'neofetch'
         'btop'
         'duf'
+        'pv'
+        'batcat'
+        'eza'
     )
     for app in ${apps[@]}; do
         echo "$os: Installing tool '${app}'"
@@ -76,6 +85,7 @@ elif [[ "$os" == "ubuntu" ]]; then
     fi
     cd -
     rm -rf /tmp/dotfiles
+    ensure_symlink "$(pwd)/zsh/selected-editor" "$HOME/.selected-editor"
 else
     echo "Probably installing in a container, not installing extra tools. Stoping..."
 fi
