@@ -37,8 +37,8 @@ if [ -e ~/.zshrc ]; then
     mv $HOME/.zshrc $HOME/.zshrc-pre-install
     mv $HOME/.p10k.zsh $HOME/.p10k.zsh-pre-install
 fi
-cp $HOME/zsh/zshrc $HOME/.zshrc
-cp $HOME/zsh/p10k.zsh $HOME/.p10k.zsh
+ensure_symlink "$(pwd)/zsh/zshrc" "$HOME/.zshrc"
+ensure_symlink "$(pwd)/zsh/p10k.zsh" "$HOME/.p10k.zsh"
 
 # Move to zsh.
 echo "$os: checking shell..."
