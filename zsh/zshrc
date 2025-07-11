@@ -235,7 +235,7 @@ if [[ -f "~/.config/op/plugins.sh" ]]; then
 fi
 unset -f ls
 DISABLE_LS_COLORS="true"
-alias ls='eza --icons=always -x --group-directories-first'
+alias ls='eza --git --icons=always -x --group-directories-first'
 export EZA_CONFIG_DIR=~/.eza-themes/eza
 if [[ "$(uname)" == "Darwin" ]]; then
   # The next line enables autojump profile 
