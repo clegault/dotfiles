@@ -254,9 +254,10 @@ if [[ "$(uname)" == "Darwin" ]]; then
   alias pip3=/opt/homebrew/bin/pip3
   alias pip=/opt/homebrew/bin/pip3
   alias cat=/opt/homebrew/bin/bat
-  export GOROOT=/opt/homebrew/Cellar/go/1.24.4/libexec
+  export GOROOT=/opt/homebrew/Cellar/go/1.24.5/libexec
 else
   alias cat=/usr/bin/batcat
 fi
-
+export GOPATH=~/go
+export GOBIN=$GOPATH/bin
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

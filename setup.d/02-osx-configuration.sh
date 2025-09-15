@@ -25,12 +25,16 @@ defaults write com.apple.finder ShowPathbar -bool true; killall Finder
 echo "Showing all drives, connected servers and removable media on desktop in Finder"
 # Set the finder settings
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+# Enable Stacks on the Desktop
+defaults write com.apple.finder showStacks -bool true
 defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
 defaults write com.apple.finder NewWindowTarget -string "PfHm"
 defaults write com.apple.dock autohide-delay -float 0
 defaults write com.apple.dock autohide-time-modifier -int 0.3
+defaults write com.apple.dock minimize-to-application -bool true
+defaults write com.apple.dock tilesize -int 32
 
 # Restart the Finder.
 killall -HUP Finder
